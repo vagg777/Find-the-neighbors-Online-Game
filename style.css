@@ -1,0 +1,111 @@
+/*
+Ενδεικτικοί επιλογείς για τη διαμόρφωση του στυλ
+
+Μπορείτε να προσθέσετε τις δηλώσεις στους παρακάτω κανόνες και να εμπλουτίσετε με δικούς σας κανόνες.
+*/
+
+
+/* Χρειάζεται για να φανούν οι σημαίες στους φυλλομετρητές chrome-based από Windows 10 */
+
+@font-face {
+    font-family: 'TwemojiMozilla';
+    src: url('TwemojiMozilla.ttf');
+}
+xcw
+body {
+    margin: 40px;
+    font-family: 'Open Sans', 'TwemojiMozilla';
+    /* Η γραμματοσειρά open sans φορτώνεται στο αρχείο html*/
+    background-color: #fff;
+    color: #444;
+}
+
+.game-panel {
+    display: grid;
+    /* ... */
+}
+
+@media (max-width: 800px) {
+    /* ενδεικτικά */
+    /*  ... */
+}
+
+#my-country {}
+
+#sidebar {}
+
+#score {}
+
+#neighbours-panel {}
+
+.neighbour {}
+
+.was-clicked.neighbour-is-valid {}
+
+.was-clicked.neighbour-is-invalid {}
+
+.neighbour:not(.was-clicked) {}
+
+#my-country-flag {}
+
+#my-country-name {}
+
+#next-round-panel {}
+
+#progress {
+    border-radius: 5px;
+}
+
+
+/* ειδικά για τους φυλλομετρητές που προέρχονται από τον chrome καθώς 
+υποστηρίζουν λιγότερο καλά το στοιχείο progress από ότι ο firefox,
+όσον αφορά το CSS (που και σε αυτόν έχει προβληματική υποστήριξη)
+*/
+
+#progress::-webkit-progress-bar {
+    border-radius: 5px;
+}
+
+/* --------------------------------------- */
+
+.sidenav {
+    height: 60%;
+    width: 160px;
+    margin-top: 60px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 5px;
+    background-color: #ff3c94;
+    color: white;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+  
+  .sidenav p {
+    padding: 0px 8px 0px 16px;
+    text-decoration: none;
+    color: white;
+    display: block;
+  }
+  
+  .main {
+    margin-left: 160px;
+    padding: 0px 10px;
+  }
+
+  .main h2 {
+    margin-top: 60px;  
+    background-color: #707c8c;
+    color: white;
+  }
+
+  .sidenav .btn {
+    margin-top: 30px;
+    width: 140px;     /* fixed width for the sidebar buttons */
+  }
+
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  }
