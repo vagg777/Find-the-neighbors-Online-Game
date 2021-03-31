@@ -29,6 +29,8 @@
             //event listener to new game button
             document.querySelector("#btn-new-game").addEventListener("click", () => {
                 // ...
+                var greece = country2emoji2("GR");
+                document.getElementById("id_greece").innerHTML = "https://restcountries.eu/data/grc.svg";
             })
 
             //event listener to next round button
@@ -50,8 +52,14 @@
             -->
             <div class="sidenav">
                 <p><strong>Βρες τους γείτονες</strong></p><br>
-                <p>Γύρος: </p>
-                <p>Σκορ: </p>
+                <div style="overflow: hidden;">
+                    <p style="float: left;">Γύρος: </p>
+                    <p style="float: right;">0</p>
+                </div>
+                <div style="overflow: hidden;">
+                    <p style="float: left;">Σκορ: </p>
+                    <p style="float: right;">0</p>
+                </div>
                 <br><br><br><br><br><br><br><br>
                 <div class="text-center">
                     <button id="btn-next-round" class="btn btn-light btn-block" disabled>Επόμενη Χώρα</button>
@@ -60,14 +68,14 @@
               </div>
               
               <div class="main">
-                <h2>Sidebar</h2>
+                <h2><img src="https://restcountries.eu/data/grc.svg">Greece</h2>
                 <p>This sidebar is of full height (100%) and always shown.</p>
                 <p>Scroll down the page to see the result.</p>
                 <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
                 <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
                 <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
                 <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
-              </div>  
+            </div>  
     </div>
 </body>
 

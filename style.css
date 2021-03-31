@@ -105,6 +105,13 @@ body {
     width: 140px;     /* fixed width for the sidebar buttons */
   }
 
+  .main img {
+    width: 40px;
+    height: 40px;
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+
   @media screen and (max-height: 450px) {
     .sidenav {padding-top: 15px;}
     .sidenav a {font-size: 18px;}
