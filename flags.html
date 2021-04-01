@@ -34,16 +34,19 @@
                 var neighbor2 = "ita";
                 var neighbor3 = "swe";
                 var neighbor4 = "rus";
-                document.getElementById("id_grc").src = "https://restcountries.eu/data/" + country + ".svg";
-                document.getElementById("id_fra").src = "https://restcountries.eu/data/" + neighbor1 + ".svg";
-                document.getElementById("id_ita").src = "https://restcountries.eu/data/" + neighbor2 + ".svg";
-                document.getElementById("id_grc1").src = "https://restcountries.eu/data/" + country + ".svg";
-                document.getElementById("id_fra1").src = "https://restcountries.eu/data/" + neighbor1 + ".svg";
-                document.getElementById("id_ita1").src = "https://restcountries.eu/data/" + neighbor2 + ".svg";
-                document.getElementById("id_swe").src = "https://restcountries.eu/data/" + neighbor3 + ".svg";
-                document.getElementById("id_swe1").src = "https://restcountries.eu/data/" + neighbor3 + ".svg";
-                document.getElementById("id_rus").src = "https://restcountries.eu/data/" + neighbor4 + ".svg";
-                document.getElementById("id_rus1").src = "https://restcountries.eu/data/" + neighbor4 + ".svg";
+                var neighbor5 = "esp";
+                document.getElementById("id_" + country + "").src = "https://restcountries.eu/data/" + country + ".svg";
+                document.getElementById("id_" + country + "1").src = "https://restcountries.eu/data/" + country + ".svg";
+                document.getElementById("id_" + neighbor1 + "").src = "https://restcountries.eu/data/" + neighbor1 + ".svg";
+                document.getElementById("id_" + neighbor1 + "1").src = "https://restcountries.eu/data/" + neighbor1 + ".svg";
+                document.getElementById("id_" + neighbor2 + "").src = "https://restcountries.eu/data/" + neighbor2 + ".svg";
+                document.getElementById("id_" + neighbor2 + "1").src = "https://restcountries.eu/data/" + neighbor2 + ".svg";
+                document.getElementById("id_" + neighbor3 + "").src = "https://restcountries.eu/data/" + neighbor3 + ".svg";
+                document.getElementById("id_" + neighbor3 + "1").src = "https://restcountries.eu/data/" + neighbor3 + ".svg";
+                document.getElementById("id_" + neighbor4 + "").src = "https://restcountries.eu/data/" + neighbor4 + ".svg";
+                document.getElementById("id_" + neighbor4 + "1").src = "https://restcountries.eu/data/" + neighbor4 + ".svg";
+                document.getElementById("id_" + neighbor5 + "").src = "https://restcountries.eu/data/" + neighbor5 + ".svg";
+                document.getElementById("id_" + neighbor5 + "1").src = "https://restcountries.eu/data/" + neighbor5 + ".svg";
             })
 
             //event listener to next round button
@@ -81,7 +84,7 @@
               </div>
               
               <div class="main">
-                <h2><img src="https://restcountries.eu/data/grc.svg">Greece</h2>
+                <h2><img id="header_img" src="https://restcountries.eu/data/grc.svg">Greece</h2>
                 <div class="progress">
                     <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
@@ -95,6 +98,10 @@
                         <p style="text-align: center;">France</p>
                     </div>
                     <div class="flex-country">
+                        <img id="id_esp" src="">
+                        <p style="text-align: center;">Spain</p>
+                    </div>
+                    <div class="flex-country">
                         <img id="id_ita" src="">
                         <p style="text-align: center;">Italy</p>
                     </div>
@@ -103,12 +110,20 @@
                         <p style="text-align: center;">Greece</p>
                     </div>
                     <div class="flex-country">
+                        <img id="id_rus1" src="">
+                        <p style="text-align: center;">Russia</p>
+                    </div>
+                    <div class="flex-country">
                         <img id="id_fra1" src="">
                         <p style="text-align: center;">France</p>
                     </div>
                     <div class="flex-country">
                         <img id="id_ita1" src="">
                         <p style="text-align: center;">Italy</p>
+                    </div>
+                    <div class="flex-country">
+                        <img id="id_esp1" src="">
+                        <p style="text-align: center;">Spain</p>
                     </div>
                     <div class="flex-country">
                         <img id="id_swe" src="">
@@ -122,10 +137,7 @@
                         <img id="id_rus" src="">
                         <p style="text-align: center;">Russia</p>
                     </div>
-                    <div class="flex-country">
-                        <img id="id_rus1" src="">
-                        <p style="text-align: center;">Russia</p>
-                    </div>
+                    
                 </ul>
             </div>  
     </div>
