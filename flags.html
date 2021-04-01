@@ -29,8 +29,21 @@
             //event listener to new game button
             document.querySelector("#btn-new-game").addEventListener("click", () => {
                 // ...
-                var greece = country2emoji2("GR");
-                document.getElementById("id_greece").innerHTML = "https://restcountries.eu/data/grc.svg";
+                var country = "grc";
+                var neighbor1 = "fra";
+                var neighbor2 = "ita";
+                var neighbor3 = "swe";
+                var neighbor4 = "rus";
+                document.getElementById("id_grc").src = "https://restcountries.eu/data/" + country + ".svg";
+                document.getElementById("id_fra").src = "https://restcountries.eu/data/" + neighbor1 + ".svg";
+                document.getElementById("id_ita").src = "https://restcountries.eu/data/" + neighbor2 + ".svg";
+                document.getElementById("id_grc1").src = "https://restcountries.eu/data/" + country + ".svg";
+                document.getElementById("id_fra1").src = "https://restcountries.eu/data/" + neighbor1 + ".svg";
+                document.getElementById("id_ita1").src = "https://restcountries.eu/data/" + neighbor2 + ".svg";
+                document.getElementById("id_swe").src = "https://restcountries.eu/data/" + neighbor3 + ".svg";
+                document.getElementById("id_swe1").src = "https://restcountries.eu/data/" + neighbor3 + ".svg";
+                document.getElementById("id_rus").src = "https://restcountries.eu/data/" + neighbor4 + ".svg";
+                document.getElementById("id_rus1").src = "https://restcountries.eu/data/" + neighbor4 + ".svg";
             })
 
             //event listener to next round button
@@ -73,25 +86,45 @@
                     <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 <ul class="flex-container wrap">
-                    <div>
-                        <img src="https://restcountries.eu/data/grc.svg">
+                    <div class="flex-country">
+                        <img id="id_grc" src="">
                         <p style="text-align: center;">Greece</p>
                     </div>
-                    <div>
-                        <img src="https://restcountries.eu/data/grc.svg">
+                    <div class="flex-country">
+                        <img id="id_fra" src="">
+                        <p style="text-align: center;">France</p>
+                    </div>
+                    <div class="flex-country">
+                        <img id="id_ita" src="">
+                        <p style="text-align: center;">Italy</p>
+                    </div>
+                    <div class="flex-country">
+                        <img id="id_grc1" src="">
                         <p style="text-align: center;">Greece</p>
                     </div>
-                    <div>
-                        <img src="https://restcountries.eu/data/grc.svg">
-                        <p style="text-align: center;">Greece</p>
+                    <div class="flex-country">
+                        <img id="id_fra1" src="">
+                        <p style="text-align: center;">France</p>
                     </div>
-                    <div>
-                        <img src="https://restcountries.eu/data/grc.svg">
-                        <p style="text-align: center;">Greece</p>
+                    <div class="flex-country">
+                        <img id="id_ita1" src="">
+                        <p style="text-align: center;">Italy</p>
                     </div>
-                    <div>
-                        <img src="https://restcountries.eu/data/grc.svg">
-                        <p style="text-align: center;">Greece</p>
+                    <div class="flex-country">
+                        <img id="id_swe" src="">
+                        <p style="text-align: center;">Sweden</p>
+                    </div>
+                    <div class="flex-country">
+                        <img id="id_swe1" src="">
+                        <p style="text-align: center;">Sweden</p>
+                    </div>
+                    <div class="flex-country">
+                        <img id="id_rus" src="">
+                        <p style="text-align: center;">Russia</p>
+                    </div>
+                    <div class="flex-country">
+                        <img id="id_rus1" src="">
+                        <p style="text-align: center;">Russia</p>
                     </div>
                 </ul>
             </div>  
