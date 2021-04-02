@@ -29,21 +29,42 @@
             //event listener to new game button
             document.querySelector("#btn-new-game").addEventListener("click", () => {
                 // ...
-                var countryCode = "grc";
-                var countryName = "Greece";
-                var countryDiv = document.createElement('div');
-                var countryDivImage = document.createElement('img');
-                var countryDivName = document.createElement('p');
-                var element = document.getElementById("countries_list");
-                countryDiv.setAttribute("id", "id_"+countryCode);
-                countryDiv.setAttribute("class", "flex-country");
-                countryDivImage.src = 'https://restcountries.eu/data/' + countryCode + '.svg';
-                countryDiv.appendChild(countryDivImage);
-                countryDivName.innerHTML = countryName;
-                countryDivName.setAttribute("style","text-align: center");
-                countryDiv.appendChild(countryDivName);
-                element.appendChild(countryDiv);
+                var i=0;
+                for (i = 0; i < 11; i++) {
+                    if (i < 3) {
+                        var countryCode = "grc";
+                        var countryName = "Greece";
+                    } else if (i < 6) {
+                        var countryCode = "swe";
+                        var countryName = "Sweden";  
+                    }
+                    else if (i < 9) {
+                        var countryCode = "bra";
+                        var countryName = "Brazil";  
+                    }
+                    else {
+                        var countryCode = "ita";
+                        var countryName = "Italy";  
+                    }
+                    var countryDiv = document.createElement('div');
+                    var countryDivImage = document.createElement('img');
+                    var countryDivName = document.createElement('p');
+                    var element = document.getElementById("countries_list");
+                    countryDiv.setAttribute("id", "id_" + countryCode);
+                    countryDiv.setAttribute("class", "flex-country");
+                    if (i%2 === 0)
+                        countryDiv.setAttribute("style", "border: 5px solid red; background-color: #e8e8e8");       // if country wrong
+                    else
+                        countryDiv.setAttribute("style", "border: 5px solid green; background-color: #e8e8e8");     // if country correct
+                    countryDivImage.src = 'https://restcountries.eu/data/' + countryCode + '.svg';
+                    countryDivName.innerHTML = countryName;
+                    countryDivName.setAttribute("style","text-align: center");
+                    countryDiv.appendChild(countryDivImage);
+                    countryDiv.appendChild(countryDivName);
+                    element.appendChild(countryDiv);
+                }
             });
+            
 
             //event listener to next round button
             document.querySelector("#btn-next-round").addEventListener("click", () => {
