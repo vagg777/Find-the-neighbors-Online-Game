@@ -11,7 +11,7 @@
     font-family: 'TwemojiMozilla';
     src: url('TwemojiMozilla.ttf');
 }
-xcw
+
 body {
     margin: 40px;
     font-family: 'Open Sans', 'TwemojiMozilla';
@@ -69,7 +69,7 @@ body {
 /* --------------------------------------- */
 
 .sidenav {
-    height: 60%;
+    height: 445px;
     width: 160px;
     margin-top: 60px;
     position: fixed;
@@ -96,13 +96,13 @@ body {
 
   .main h2 {
     margin-top: 60px;
-    height: 20%;  
+    height: 100px;  
     background-color: #707c8c;
     color: white;
   }
 
   .sidenav .btn {
-    margin-top: 30px;
+    margin-bottom: 30px;
     width: 140px;     /* fixed width for the sidebar buttons */
   }
 
