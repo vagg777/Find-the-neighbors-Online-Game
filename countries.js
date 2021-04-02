@@ -10,7 +10,15 @@ function shuffleArray(array) {
     }
     return array
 }
-
+function test(){
+    //shuffleArray(array) country2emoji2(country_code)
+    let a = shuffleArray(countryObjects);
+    b = a[0]['code']
+    console.log(b)
+    e_b=country2emoji2(b)
+    console.log(e_b)
+    return b
+}
 // Returns a flag emoji from a 2-letter country code
 function country2emoji2(country_code) {
     const OFFSET = 127397;
@@ -276,3 +284,4 @@ const countryObjects = [
     { "code": "ZW", "code3": "ZWE", "name": "Zimbabwe", "number": "716" },
     { "code": "AX", "code3": "ALA", "name": "Åland Islands", "number": "248" }
 ];
+
