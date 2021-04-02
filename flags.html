@@ -35,6 +35,14 @@
             }
         }
 
+        function changePlayerRound(round) {
+            document.getElementById("player_round").innerHTML = round;
+        }
+
+        function changePlayerScore(score) {
+            document.getElementById("player_score").innerHTML = score;
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             //start a new Game
             //...
@@ -99,11 +107,11 @@
                 <p><strong>Βρες τους γείτονες</strong></p><br>
                 <div style="overflow: hidden;">
                     <p style="float: left;">Γύρος: </p>
-                    <p style="float: right;">0</p>
+                    <p id="player_round" style="float: right;">0</p>
                 </div>
                 <div style="overflow: hidden;">
                     <p style="float: left;">Σκορ: </p>
-                    <p style="float: right;">0</p>
+                    <p id="player_score" style="float: right;">0</p>
                 </div>
                 <br><br><br><br><br>
                 <div class="text-center">
