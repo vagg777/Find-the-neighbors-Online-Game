@@ -68,6 +68,7 @@
                         var countryName = "Italy";  
                     }
                     var countryDiv = document.createElement('div');
+                    var countryDivHref = document.createElement('a');
                     var countryDivImage = document.createElement('img');
                     var countryDivName = document.createElement('p');
                     var element = document.getElementById("countries_list");
@@ -77,9 +78,13 @@
                         countryDiv.setAttribute("style", "border: 5px solid red; background-color: #e8e8e8");       // if country wrong
                     else
                         countryDiv.setAttribute("style", "border: 5px solid green; background-color: #e8e8e8");     // if country correct
+                    countryDivHref.setAttribute('href', "#");
+                    countryDivHref.setAttribute('onclick', "changeProgressBar(10)");
                     countryDivImage.src = 'https://restcountries.eu/data/' + countryCode + '.svg';
                     countryDivName.innerHTML = countryName;
                     countryDivName.setAttribute("style","text-align: center");
+                    countryDivHref.appendChild(countryDivImage);
+                    countryDiv.appendChild(countryDivHref);
                     countryDiv.appendChild(countryDivImage);
                     countryDiv.appendChild(countryDivName);
                     element.appendChild(countryDiv);
@@ -89,8 +94,10 @@
 
             //event listener to next round button
             document.querySelector("#btn-next-round").addEventListener("click", () => {
-                // ...
+                //
             })
+
+          
         });
     </script>
 </head>
