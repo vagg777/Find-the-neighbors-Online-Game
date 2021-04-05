@@ -105,11 +105,12 @@
 <body>
     <div class="game-panel">
         <!-- 
-                Γράψτε εδώ τον κώδικα HTML που χρειάζεστε για το παιχνίδι.
-                Κάποια από τα στοιχεία (elements) της σελίδας προστίθενται και
-                αφαιρούνται δυναμικά, μέσα από τη JavaScript, π.χ. οι σημαίες 
-                των γειτονικών χωρών κ.ά.
-            -->
+            Γράψτε εδώ τον κώδικα HTML που χρειάζεστε για το παιχνίδι.
+            Κάποια από τα στοιχεία (elements) της σελίδας προστίθενται και
+            αφαιρούνται δυναμικά, μέσα από τη JavaScript, π.χ. οι σημαίες 
+            των γειτονικών χωρών κ.ά.
+        -->
+        <div class="row-inline">
             <div class="sidenav">
                 <p><strong>Βρες τους γείτονες</strong></p><br>
                 <div style="overflow: hidden;">
@@ -125,8 +126,8 @@
                     <button id="btn-next-round" class="btn btn-light btn-block" disabled>Επόμενη Χώρα</button>
                     <button id="btn-new-game" class="btn btn-light btn-block">Νέο Παιχνίδι</button>
                 </div>
-              </div>
-              <div class="main">
+            </div>
+            <div class="main">
                 <h2><img id="header_img" src="https://restcountries.eu/data/grc.svg">Greece</h2>
                 <div class="progress">
                     <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
@@ -134,6 +135,7 @@
                 <ul class="flex-container wrap" id="countries_list">
                 </ul>
             </div>  
+        </div>
     </div>
 </body>
 

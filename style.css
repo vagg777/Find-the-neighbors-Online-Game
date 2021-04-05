@@ -22,6 +22,7 @@ body {
 
 .game-panel {
     display: grid;
+    border: 5px solid red;
     /* ... */
 }
 
@@ -69,11 +70,10 @@ body {
 /* --------------------------------------- */
 
 .sidenav {
-    height: 445px;
     width: 160px;
-    margin-top: 60px;
+    margin-top: 65px;
     position: fixed;
-    z-index: 1;
+    z-index: 0;
     top: 0;
     left: 5px;
     background-color: #ff3c94;
@@ -142,7 +142,13 @@ body {
     flex-wrap: wrap;
   }  
 
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
+  @media screen and (max-height: 850px) {
+    .sidenav {
+      padding-top: 15px;
+      background-color: #000000;
+    }
+    .sidenav a {
+      font-size: 18px;
+    }
+   
   }
