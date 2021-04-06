@@ -71,11 +71,11 @@ body {
 
 .sidenav {
     width: 160px;
-    margin-top: 65px;
+    margin-top: 35px;
     position: fixed;
     z-index: 0;
     top: 0;
-    left: 5px;
+    left: 30px;
     background-color: #ff3c94;
     color: white;
     overflow-x: hidden;
@@ -88,32 +88,32 @@ body {
     color: white;
     display: block;
   }
-  
-  .main {
-    margin-left: 160px;
-    padding: 0px 10px;
-  }
-
-  .main h2 {
-    margin-top: 60px;
-    height: 100px;  
-    background-color: #707c8c;
-    color: white;
-  }
 
   .sidenav .btn {
     margin-bottom: 30px;
     width: 140px;     /* fixed width for the sidebar buttons */
   }
 
-  .main img {
-    width: 100px;
-    height: 100px;
-  }
-
   #header_img {
     margin-left: 20px;
     margin-right: 30px;
+  }
+  
+  .main {
+    margin-left: 200px;
+    padding: 0px 10px;
+  }
+
+  .main h2 {
+    margin-top: 30px;
+    height: 100px;  
+    background-color: #707c8c;
+    color: white;
+  }
+  
+  .main img {
+    width: 100px;
+    height: 100px;
   }
 
   .flex-container {
@@ -142,13 +142,26 @@ body {
     flex-wrap: wrap;
   }  
 
-  @media screen and (max-height: 850px) {
+  @media screen and (max-width: 800px) {
     .sidenav {
-      padding-top: 15px;
-      background-color: #000000;
+      width: 100%;
+      height: auto;
+      position: relative;
+      left: 0;
     }
-    .sidenav a {
-      font-size: 18px;
+
+    div.content {
+      margin-left: 0;
     }
-   
+
+    .main {
+      margin-left: 0px;
+    }
+
+    .btn {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+    }
   }
