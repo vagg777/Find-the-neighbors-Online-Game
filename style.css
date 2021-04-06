@@ -79,7 +79,8 @@ body {
     background-color: #ff3c94;
     color: white;
     overflow-x: hidden;
-    padding-top: 20px;
+    padding-top: 20px;    /* space between text and div */
+    padding-bottom: 20px; /* space between last sidebar button and div */
   }
   
   .sidenav p {
@@ -89,9 +90,14 @@ body {
     display: block;
   }
 
-  .sidenav .btn {
-    margin-bottom: 30px;
-    width: 140px;     /* fixed width for the sidebar buttons */
+  #btn-next-round{
+    margin-top: 140px;
+    width: 140px;     
+  }
+
+  #btn-new-game {
+    margin-top: 10px;
+    width: 140px;   
   }
 
   #header_img {
@@ -100,7 +106,8 @@ body {
   }
   
   .main {
-    margin-left: 200px;
+    margin-left: 180px;
+    margin-right: 20px;
     padding: 0px 10px;
   }
 
@@ -144,10 +151,10 @@ body {
 
   @media screen and (max-width: 800px) {
     .sidenav {
-      width: 100%;
+      width: 96%;
       height: auto;
       position: relative;
-      left: 0;
+      margin-left: -20px;
     }
 
     div.content {
@@ -156,12 +163,17 @@ body {
 
     .main {
       margin-left: 0px;
+      margin-right: 0px;
     }
 
-    .btn {
-      display: block;
-      margin: 10px 0;
-      padding: 10px;
-      width: 100%;
+    #btn-next-round{
+      margin-top: 0px;
+      width: 95%;   
     }
+
+    #btn-new-game {
+      margin-top: 20px;
+      width: 95%;   
+    }
+  
   }
