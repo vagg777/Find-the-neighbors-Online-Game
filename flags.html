@@ -12,8 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="countries.js"></script>
-
-    </script>
     <script>
         // Ένας βοηθητικός πίνακας που θα περιέχει τις χώρες από το countries.js σε λίγο πιο βολική μορφή
         const allCountries = new Array();
@@ -34,6 +32,14 @@
                 else  
                     elem.style.width = step + "%"; 
             }
+        }
+
+        function on() {
+            document.getElementById("overlay").style.display = "block";
+        }
+
+        function off() {
+            document.getElementById("overlay").style.display = "none";
         }
 
         function changePlayerRound(round) {
@@ -92,12 +98,16 @@
                 }
             });
 
+            /*
             $(document).ready(function() {
                 $(".main").click(function() {
-                    document.getElementById("overlay").style.display = "block";
+                    document.getElementById("countries_list").style.backgroundColor = "rgba(0,0,0,0.5)";
+                    document.getElementById("countries_list").style.zIndex = 20;
+                    document.getElementById("countries_list").style.cursor = "pointer";
+                    document.getElementById("countries_list").style.height = "35%";
                 });
-            });
-            
+            });*/
+
 
             //event listener to next round button
             document.querySelector("#btn-next-round").addEventListener("click", () => {
@@ -133,15 +143,17 @@
                     <button id="btn-new-game" class="btn btn-light btn-block">Νέο Παιχνίδι</button>
                 </div>
             </div>
+            <button onclick="on()">Turn on overlay effect</button>
             <div class="main">
                 <h2><img id="header_img" src="https://restcountries.eu/data/grc.svg">Greece</h2>
                 <div class="progress">
                     <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div id="overlay"></div>
-                <ul class="flex-container wrap" id="countries_list">
-                </ul> 
+                <ul class="flex-container wrap" id="countries_list"></ul> 
             </div> 
+            <div id="overlay" onclick="off()">
+                <div id="text">Overlay Text</div>
+            </div>
         </div>
     </div>
 </body>
