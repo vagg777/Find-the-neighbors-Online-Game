@@ -67,12 +67,17 @@ body {
     border-radius: 5px;
 }
 
-/* --------------------------------------- */
+/* 
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+-----------------------------------------------------------------------
+ */
 
 .sidenav {
     width: 160px;
     margin-top: 35px;
-    position: fixed;
+    position: absolute;
     z-index: 0;
     top: 0;
     left: 30px;
@@ -123,7 +128,7 @@ body {
     height: 100px;
   }
 
-  .flex-container {
+  .flex-container, #overlay {
     padding: 0;
     margin: 10px 0px 0px 0px;
     list-style: none;
@@ -148,6 +153,16 @@ body {
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
   }  
+
+  #overlay {
+    position: absolute;
+    display: none;
+    width: 100%;
+    height: 34%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 2;
+    cursor: pointer;
+  }
 
   @media screen and (max-width: 800px) {
     .sidenav {
