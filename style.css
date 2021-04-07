@@ -161,10 +161,6 @@ body {
     font-size: 40px;
     display: none;
   }
-
-  #overlayBox { 
-    /* */         
-  }
   
   @media screen and (max-width: 800px) {
     .sidenav {

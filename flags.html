@@ -53,12 +53,12 @@
                     }
                 }).then(y=>{
                     console.log("[playingCountry] ", y)
-                    let a = this.createDisplayedCountries(y);
-                    console.log("a ", a);
+                    let neighbors = this.createDisplayedCountries(y);
+                    console.log("neighbors= ", neighbors);
                     var i=0;
-                    for (i = 0; i < a.length; i++) {
-                        var countryCode = a[i].code3.toLowerCase();
-                        var countryName = a[i].name;
+                    for (i = 0; i < neighbors.length; i++) {
+                        var countryCode = neighbors[i].code3.toLowerCase();
+                        var countryName = neighbors[i].name;
                         var countryDiv = document.createElement('div');
                         var countryDivHref = document.createElement('a');
                         var countryDivImage = document.createElement('img');
@@ -66,12 +66,12 @@
                         var element = document.getElementById("countries_list");
                         countryDiv.setAttribute("id", "id_" + countryCode);
                         countryDiv.setAttribute("class", "flex-country");
-                        countryDiv.setAttribute("style", "border: 5px solid red; background-color: #e8e8e8");       // if country wrong
+                        countryDiv.setAttribute("style", "border: 5px solid red; background-color: #e8e8e8; word-wrap: break-word;");       // if country wrong
                         countryDivHref.setAttribute('href', "#");
                         countryDivHref.setAttribute('onclick', "changeProgressBar(10)");
                         countryDivImage.src = 'https://restcountries.eu/data/' + countryCode + '.svg';
                         countryDivName.innerHTML = countryName;
-                        countryDivName.setAttribute("style","text-align: center;word-wrap: break-word");
+                        countryDivName.setAttribute("style","text-align: center; word-wrap: break-word;");
                         countryDivHref.appendChild(countryDivImage);
                         countryDiv.appendChild(countryDivHref);
                         countryDiv.appendChild(countryDivImage);
