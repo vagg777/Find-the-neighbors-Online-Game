@@ -13,14 +13,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="countries.js"></script>
     <script>
-        // Ένας βοηθητικός πίνακας που θα περιέχει τις χώρες από το countries.js σε λίγο πιο βολική μορφή
         const allCountries = new Array();
         // πχ. allCountries['GRE'] = { code2: "GR", name: "Greece"}, ή κάτι παρόμοιο 
-
-        // Εδώ μπορείτε να βάλετε τον κώδικα για όλο το παιχνίδι
-        // Μπορείτε γράψετε κλάσεις που να έχουν κάποια συμπεριφορά, 
-        // π.χ. Game, PlayingCountry, Neighbour, ...
-        // ή να και ακολουθήσετε άλλη τακτική, που να σας είναι πιο προσιτή
 
         // moves the progress bar towards the specified step
         function changeProgressBar(step) {
@@ -51,10 +45,6 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-            //start a new Game
-            //...
-
-            //event listener to new game button
             document.querySelector("#btn-new-game").addEventListener("click", () => {
                 // ...
                 var i=0;
@@ -97,36 +87,27 @@
                     element.appendChild(countryDiv);
                 }
             });
-
-            /*
+            
             $(document).ready(function() {
                 $(".main").click(function() {
-                    document.getElementById("countries_list").style.backgroundColor = "rgba(0,0,0,0.5)";
-                    document.getElementById("countries_list").style.zIndex = 20;
-                    document.getElementById("countries_list").style.cursor = "pointer";
-                    document.getElementById("countries_list").style.height = "35%";
+                    var elmnt = document.getElementById("countries_list");
+                    let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
+                    let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
+                    document.getElementById("custom_overlay").style.display = "block";
+                    document.getElementById("custom_overlay").style.left = centerX-100 + "px";
+                    document.getElementById("custom_overlay").style.top = centerY-50 + "px";
                 });
-            });*/
+            });
 
-
-            //event listener to next round button
             document.querySelector("#btn-next-round").addEventListener("click", () => {
-                //
             })
 
-          
         });
     </script>
 </head>
 
 <body>
     <div class="game-panel">
-        <!-- 
-            Γράψτε εδώ τον κώδικα HTML που χρειάζεστε για το παιχνίδι.
-            Κάποια από τα στοιχεία (elements) της σελίδας προστίθενται και
-            αφαιρούνται δυναμικά, μέσα από τη JavaScript, π.χ. οι σημαίες 
-            των γειτονικών χωρών κ.ά.
-        -->
         <div class="row-inline">
             <div class="sidenav">
                 <p><strong>Βρες τους γείτονες</strong></p><br>
@@ -143,19 +124,26 @@
                     <button id="btn-new-game" class="btn btn-light btn-block">Νέο Παιχνίδι</button>
                 </div>
             </div>
-            <button onclick="on()">Turn on overlay effect</button>
-            
+
             <div class="main">
                 <h2><img id="header_img" src="https://restcountries.eu/data/grc.svg">Greece</h2>
                 <div class="progress">
                     <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div id="overlay" onclick="off()">
-                    <div id="overlay_text">Overlay Text</div>
+                <div class="box">
+                    <ul class="flex-container wrap" id="countries_list">
+                        <div id="custom_overlay">MY OVERLAY</div>
+                        <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
+                        <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
+                        <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
+                        <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
+                        <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
+                        <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
+                        <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
+                    </ul>
                 </div>
-                <ul class="flex-container wrap" id="countries_list"></ul> 
-            </div> 
-        </div>
+            </div>
+        </div> 
     </div>
 </body>
 

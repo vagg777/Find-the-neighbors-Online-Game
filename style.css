@@ -142,25 +142,20 @@ body {
     display: flex;
   }
 
-  #overlay {
-    position: absolute;
-    display: none;
-    margin: 10px 0px 0px 0px;
-    width: 84%;
-    height: 41%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 2;
-    cursor: pointer;
+  .box {       
+    background-color: rgba(0,0,0,0.5);        
+    opacity: 0.1;
   }
   
-  #overlay_text{
+  #custom_overlay {
+    background-color: black;
+    color: red;
+    /*margin-left: 30%;
+    margin-top: 4%;*/
     position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 50px;
-    color: white;
-    transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
+    font-size: 40px;
+    opacity: 1.0;
+    display: none;
   }
 
   .flex-country {
@@ -170,7 +165,7 @@ body {
     margin-right: 20px;
   }
   
-  .wrap    { 
+  .wrap { 
     -webkit-flex-wrap: wrap;
     flex-wrap: wrap;
   }  
