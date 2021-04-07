@@ -87,16 +87,14 @@
                     element.appendChild(countryDiv);
                 }
             });
-            
-            $(document).ready(function() {
-                $(".main").click(function() {
+
+            $(window).resize(function () {
                     var elmnt = document.getElementById("countries_list");
                     let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
                     let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
                     document.getElementById("custom_overlay").style.display = "block";
                     document.getElementById("custom_overlay").style.left = centerX-100 + "px";
                     document.getElementById("custom_overlay").style.top = centerY-50 + "px";
-                });
             });
 
             document.querySelector("#btn-next-round").addEventListener("click", () => {
