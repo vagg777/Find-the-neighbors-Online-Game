@@ -142,22 +142,6 @@ body {
     display: flex;
   }
 
-  .box {       
-    background-color: rgba(0,0,0,0.5);        
-    opacity: 0.1;
-  }
-  
-  #custom_overlay {
-    background-color: black;
-    color: red;
-    /*margin-left: 30%;
-    margin-top: 4%;*/
-    position: absolute;
-    font-size: 40px;
-    opacity: 1.0;
-    display: none;
-  }
-
   .flex-country {
     text-align: center;
     border: 5px solid black;
@@ -170,6 +154,18 @@ body {
     flex-wrap: wrap;
   }  
 
+  #overlayText {
+    background-color: black;
+    color: red;
+    position: absolute;
+    font-size: 40px;
+    display: none;
+  }
+
+  #overlayBox { 
+    /* */         
+  }
+  
   @media screen and (max-width: 800px) {
     .sidenav {
       width: 96%;

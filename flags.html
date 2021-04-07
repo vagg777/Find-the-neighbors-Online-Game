@@ -89,12 +89,17 @@
             });
 
             $(window).resize(function () {
-                    var elmnt = document.getElementById("countries_list");
-                    let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
-                    let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
-                    document.getElementById("custom_overlay").style.display = "block";
-                    document.getElementById("custom_overlay").style.left = centerX-100 + "px";
-                    document.getElementById("custom_overlay").style.top = centerY-50 + "px";
+                    var round = "lost";
+                    if (round == "lost"){
+                        var elmnt = document.getElementById("countries_list");
+                        let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
+                        let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
+                        document.getElementById("overlayBox").style.backgroundColor = "rgba(0,0,0,0.5)"; 
+                        document.getElementById("overlayBox").style.opacity = 0.1;
+                        document.getElementById("overlayText").style.left = centerX-100 + "px";
+                        document.getElementById("overlayText").style.top = centerY-50 + "px";
+                        document.getElementById("overlayText").style.display = "block";
+                    } 
             });
 
             document.querySelector("#btn-next-round").addEventListener("click", () => {
@@ -128,9 +133,9 @@
                 <div class="progress">
                     <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-                <div class="box">
+                <div id="overlayBox">
                     <ul class="flex-container wrap" id="countries_list">
-                        <div id="custom_overlay">MY OVERLAY</div>
+                        <div id="overlayText">MY OVERLAY</div>
                         <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
                         <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
                         <div id="id_grc" class="flex-country" style="border: 5px solid red; background-color: #e8e8e8"><a href="#" onclick="changeProgressBar(10)"></a><img src="https://restcountries.eu/data/grc.svg"><p style="text-align: center">Greece</p></div>
