@@ -171,8 +171,9 @@
             document.getElementById("player_score").innerHTML = score;
         }
 
-        function getClickedCountry(id) {
-            var countryCode3 = id.split("id_");
+        function getClickedCountry(div_id) {
+            var countryCode3 = div_id.split("id_")[1];
+            alert(countryCode3)
         }
 
         document.addEventListener("DOMContentLoaded", () => {
