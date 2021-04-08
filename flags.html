@@ -130,27 +130,6 @@
                 this.neighbours = neighbours;
             }  
         }
-
-
-       function findNeighbours(country) {
-                fetch(urlCountry+country)
-                .then((response) => {
-                    if (response.status === 200) {
-                        return response.json();
-                    } else throw new Error(response.status);
-                })
-                .then((data) => {
-                    if(data.length<1){
-                        throw new Error("Δεν βρέθηκε η χώρα !")
-                    } else {
-                        if (data[0].borders.length > 0) {
-                            let countryNeighbors = countryObjects.find((s) => s['code3'] === data[0].borders[0])
-                            let playingCountry = new PlayingCountry(country, countryNeighbors);
-                            console.log("Χώρα: ", playingCountry)
-                            return playingCountry
-                        }
-                    }});
-        }
        
         function changeProgressBar(step) {
             var elem = document.getElementById("progress-bar");
@@ -173,11 +152,16 @@
 
         function getClickedCountry(div_id) {
             var clickedCountryCode = div_id.split("id_")[1].toUpperCase();
-            if ( globalNeighbors.find((s) => s['code3']===clickedCountryCode) != undefined){
-                document.getElementById(div_id).style.border = "5px solid green";
+            if (globalNeighbors.find((s) => s['code3']===clickedCountryCode) != undefined){
+                document.getElementById(div_id).style.border = "2px solid green";
                 document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
+                var progressBarStep = globalNeighbors.length/100;
+                var score = 0;
+                changePlayerScore(score);
+                changeProgressBar(progressBarStep);
+
             } else {
-                document.getElementById(div_id).style.border = "5px solid red";
+                document.getElementById(div_id).style.border = "2px solid red";
                 document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
             }
         }
