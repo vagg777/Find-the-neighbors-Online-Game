@@ -142,11 +142,10 @@
                         throw new Error("country not found !")
                     } else {
                         if (data[0].borders.length > 0) {
-                            let a = data[0].borders[0];
-                            let b = countryObjects.find((s) => s['code3']===data[0].borders[0])
-                            let y = new PlayingCountry(country, b);
-                            console.log("y ", y)
-                            return y
+                            let countryNeighbors = countryObjects.find((s) => s['code3'] === data[0].borders[0])
+                            let playingCountry = new PlayingCountry(country, countryNeighbors);
+                            console.log("playingCountry: ", playingCountry)
+                            return playingCountry
                 }
             }});
             
