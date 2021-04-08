@@ -18,6 +18,8 @@
         const urlCountry = 'https://restcountries.eu/rest/v2/name/';
         const urlCode = 'https://restcountries.eu/rest/v2/alpha/';
 
+        var globalCountry = "";
+        var globalNeighbors = "";
         class Game{
 
             constructor(){
@@ -25,9 +27,7 @@
                 this.round = 0;
             }
 
-            nextRound(){
-                let selectedCountry = this.chooseCountry();
-                console.log("selectedCountry: ", selectedCountry)
+            nextRound(selectedCountry){
                 fetch(urlCountry+selectedCountry.name)
                 .then((response) => {
                     if (response.status === 200) {
@@ -43,25 +43,28 @@
                     } else {
                         if (data[0].borders.length > 0) { // οι κωδικοί των γειτόνων
                             let country = data[0].borders;
-                            let neighbours= new Array();
+                            let realMeighbors = new Array();
                             for(let i=0; i<data[0].borders.length; i++){
-                                neighbours.push(countryObjects.find((s) => s['code3']===data[0].borders[i]))
+                                realMeighbors.push(countryObjects.find((s) => s['code3']===data[0].borders[i]))
                             }
-                            let playingCountry = new PlayingCountry(selectedCountry.name, neighbours);
+                            let playingCountry = new PlayingCountry(selectedCountry.name, realMeighbors);
+                            globalNeighbors = realMeighbors;
                             return playingCountry;
                         }
                         else {
                             alert("Δεν υπάρχουν γείτονες για τη χώρα " + selectedCountry.name + "!!!\n\nΑναζήτηση νέας χώρας...");
-                            game.nextRound();
+                            let selectedCountry = this.chooseCountry();
+                            game.nextRound(selectedCountry);
                         }
                     }
-                }).then(y=>{
-                    let neighbors = this.createDisplayedCountries(y);
-                    console.log("Country Neighbors: ", neighbors);
+                }).then(playingCountry=>{
+                    let possibleNeighbors = this.createDisplayedCountries(playingCountry);
+                    globalCountry = selectedCountry.name;
+                    console.log("Πιθανοί Γείτονες Χώρας: ", possibleNeighbors);
                     var i = 0;
-                    for (i = 0; i < neighbors.length; i++) {
-                        var countryCode = neighbors[i].code3.toLowerCase();
-                        var countryName = neighbors[i].name;
+                    for (i = 0; i < possibleNeighbors.length; i++) {
+                        var countryCode = possibleNeighbors[i].code3.toLowerCase();
+                        var countryName = possibleNeighbors[i].name;
                         var countryDiv = document.createElement('div');
                         var countryDivHref = document.createElement('a');
                         var countryDivImage = document.createElement('img');
@@ -144,14 +147,12 @@
                         if (data[0].borders.length > 0) {
                             let countryNeighbors = countryObjects.find((s) => s['code3'] === data[0].borders[0])
                             let playingCountry = new PlayingCountry(country, countryNeighbors);
-                            console.log("playingCountry: ", playingCountry)
+                            console.log("Χώρα: ", playingCountry)
                             return playingCountry
-                }
-            }});
-            
+                        }
+                    }});
         }
        
-        // moves the progress bar towards the specified step
         function changeProgressBar(step) {
             var elem = document.getElementById("progress-bar");
             var progressbar = setInterval(frame, step);
@@ -172,22 +173,15 @@
         }
 
         function getClickedCountry(div_id) {
-            var countryCode3 = div_id.split("id_")[1];
-            alert(countryCode3)
+            var countryCode3 = div_id.split("id_")[1].toUpperCase();
+            console.log(countryCode3);
+            console.log(globalCountry);
+            var i=0;
+            for (i=0; i<globalNeighbors.length; i++)
+                console.log(globalNeighbors[i].name);
         }
 
-        document.addEventListener("DOMContentLoaded", () => {
-            document.querySelector("#btn-new-game").addEventListener("click", () => {
-                var txt;
-                var response = confirm("Σίγουρα; Θα χάσετε όλο σας το σκόρ!");
-                if (response == true) {
-                    game = new Game();
-                    game.nextRound();
-                    document.getElementById("btn-next-round").disabled = false;
-                }
-            });
-
-            $(window).resize(function () {
+        $(window).resize(function () {
                     var round = "lost";
                     if (round == "lost"){
                         var elmnt = document.getElementById("countries_list");
@@ -201,18 +195,24 @@
                     } 
             });
 
+        document.addEventListener("DOMContentLoaded", () => {
+
+            document.querySelector("#btn-new-game").addEventListener("click", () => {
+                var response = confirm("Σίγουρα; Θα χάσετε όλο σας το σκόρ!");
+                if (response == true) {   
+                    document.getElementById("btn-next-round").disabled = false;
+                    game = new Game();
+                    let selectedCountry = game.chooseCountry();
+                    console.log("Χώρα: ", selectedCountry.name)
+                    game.nextRound(selectedCountry);
+                }
+            });
+
             document.querySelector("#btn-next-round").addEventListener("click", () => {
-                game.nextRound();
+                let selectedCountry = game.chooseCountry();
+                console.log("Χώρα: ", selectedCountry.name)
+                game.nextRound(selectedCountry);
             })
-
-
-            /*
-            $('div').click(function(evt){
-                var clicked = evt.target;
-                var currentID = clicked.id || "No ID!";
-                alert(currentID)
-            })
-            */
 
         });
     </script>
