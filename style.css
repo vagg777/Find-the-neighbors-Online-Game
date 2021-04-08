@@ -105,7 +105,7 @@ body {
     width: 140px;   
   }
 
-  #header_img {
+  #header_image {
     margin-left: 20px;
     margin-right: 30px;
   }
@@ -126,6 +126,8 @@ body {
   .main img {
     width: 100px;
     height: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   .flex-container{
