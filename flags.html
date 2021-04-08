@@ -52,14 +52,13 @@
                             return playingCountry;
                         }
                         else {
-                            alert("Δεν υπάρχουν γείτονες για τη χώρα " + selectedCountry.name + "!!!\n\nΑναζήτηση νέας χώρας...");
                             let selectedCountry = this.chooseCountry();
                             game.nextRound(selectedCountry);
                         }
                     }
                 }).then(playingCountry=>{
                     let possibleNeighbors = this.createDisplayedCountries(playingCountry);
-                    globalCountry = selectedCountry.name;
+                    globalCountry = selectedCountry;
                     console.log("Πιθανοί Γείτονες Χώρας: ", possibleNeighbors);
                     var i = 0;
                     for (i = 0; i < possibleNeighbors.length; i++) {
@@ -72,7 +71,7 @@
                         var element = document.getElementById("countries_list");
                         countryDiv.setAttribute("id", "id_" + countryCode);
                         countryDiv.setAttribute("class", "flex-country");
-                        countryDiv.setAttribute("style", "border: 5px solid red; background-color: #e8e8e8; word-wrap: break-word;");
+                        countryDiv.setAttribute("style", "word-wrap: break-word;");
                         countryDiv.setAttribute("onclick","getClickedCountry(this.id)")
                         countryDivHref.setAttribute('href', "#");
                         countryDivHref.setAttribute('onclick', "changeProgressBar(10)");
@@ -173,27 +172,29 @@
         }
 
         function getClickedCountry(div_id) {
-            var countryCode3 = div_id.split("id_")[1].toUpperCase();
-            console.log(countryCode3);
-            console.log(globalCountry);
-            var i=0;
-            for (i=0; i<globalNeighbors.length; i++)
-                console.log(globalNeighbors[i].name);
+            var clickedCountryCode = div_id.split("id_")[1].toUpperCase();
+            if ( globalNeighbors.find((s) => s['code3']===clickedCountryCode) != undefined){
+                document.getElementById(div_id).style.border = "5px solid green";
+                document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
+            } else {
+                document.getElementById(div_id).style.border = "5px solid red";
+                document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
+            }
         }
 
         $(window).resize(function () {
-                    var round = "lost";
-                    if (round == "lost"){
-                        var elmnt = document.getElementById("countries_list");
-                        let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
-                        let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
-                        document.getElementById("overlayBox").style.backgroundColor = "rgba(0,0,0,0.5)"; 
-                        document.getElementById("overlayBox").style.opacity = 0.1;
-                        document.getElementById("overlayText").style.left = centerX-100 + "px";
-                        document.getElementById("overlayText").style.top = centerY-50 + "px";
-                        document.getElementById("overlayText").style.display = "block";
-                    } 
-            });
+            var round = "lost";
+            if (round == "lost"){
+                var elmnt = document.getElementById("countries_list");
+                let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
+                let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
+                document.getElementById("overlayBox").style.backgroundColor = "rgba(0,0,0,0.5)"; 
+                document.getElementById("overlayBox").style.opacity = 0.1;
+                document.getElementById("overlayText").style.left = centerX-100 + "px";
+                document.getElementById("overlayText").style.top = centerY-50 + "px";
+                document.getElementById("overlayText").style.display = "block";
+            } 
+        });
 
         document.addEventListener("DOMContentLoaded", () => {
 
