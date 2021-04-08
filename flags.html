@@ -133,12 +133,15 @@
        
         function changeProgressBar(step) {
             var elem = document.getElementById("progress-bar");
-            var progressbar = setInterval(frame, step);
-            function frame() {
-                if (step >= 100) 
-                    clearInterval(progressbar);
-                else  
-                    elem.style.width = step + "%"; 
+            var previousWidth = parseInt(elem.style.width, 10); 
+            var newstep = step + previousWidth;
+            newstep = parseInt(newstep, 10)
+            if (newstep > 95) newstep = 100;
+            if (step == 0)
+                elem.style.width = step + "%"; 
+            else {
+                elem.style.width = newstep + "%"; 
+                elem.innerHTML = newstep  + "%";
             }
         }
 
@@ -155,9 +158,7 @@
             if (globalNeighbors.find((s) => s['code3']===clickedCountryCode) != undefined){
                 document.getElementById(div_id).style.border = "2px solid green";
                 document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
-                var progressBarStep = globalNeighbors.length/100;
-                var score = 0;
-                changePlayerScore(score);
+                var progressBarStep = 100/globalNeighbors.length;
                 changeProgressBar(progressBarStep);
 
             } else {
@@ -190,6 +191,7 @@
                     let selectedCountry = game.chooseCountry();
                     console.log("Χώρα: ", selectedCountry.name)
                     game.nextRound(selectedCountry);
+                    changeProgressBar(0); // reset Progress Bar
                 }
             });
 
@@ -197,6 +199,7 @@
                 let selectedCountry = game.chooseCountry();
                 console.log("Χώρα: ", selectedCountry.name)
                 game.nextRound(selectedCountry);
+                changeProgressBar(0); // reset Progress Bar
             })
 
         });
