@@ -108,6 +108,11 @@ body {
   #header_image {
     margin-left: 20px;
     margin-right: 30px;
+    display: inline;
+  }
+
+  #header_country {
+    display: inline;
   }
   
   .main {
@@ -134,7 +139,6 @@ body {
     padding: 0;
     margin: 10px 0px 0px 0px;
     list-style: none;
-    border: 5px solid black;
     -ms-box-orient: horizontal;
     display: -webkit-box;
     display: -moz-box;
