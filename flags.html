@@ -25,7 +25,6 @@
             }
 
             nextRound(){
-                this.round ++ ;
                 let selectedCountry = this.chooseCountry();
                 console.log("selectedCountry: ", selectedCountry)
                 fetch(urlCountry+selectedCountry.name)
@@ -53,7 +52,6 @@
                         }
                         else {
                             alert("No neighbors found for " + selectedCountry.name + "!!!\n\nSearching for new country...");
-                            game = new Game();
                             game.nextRound();
                         }
                     }
@@ -83,6 +81,8 @@
                         countryDiv.appendChild(countryDivName);
                         element.appendChild(countryDiv);
                     }
+                    this.round = this.round + 1;
+                    changePlayerRound(this.round);
                 });
             }
 
