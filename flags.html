@@ -39,7 +39,7 @@
                     document.getElementById("header_image").src = 'https://restcountries.eu/data/' + selectedCountry.code3.toLowerCase() + '.svg';
                     document.getElementById("header_country").innerHTML = selectedCountry.name;
                     if (data.length < 1) {
-                        throw new Error("Country not found in API !");
+                        throw new Error("Η χώρα δεν βρέθηκε στο API !");
                     } else {
                         if (data[0].borders.length > 0) { // οι κωδικοί των γειτόνων
                             let country = data[0].borders;
@@ -51,7 +51,7 @@
                             return playingCountry;
                         }
                         else {
-                            alert("No neighbors found for " + selectedCountry.name + "!!!\n\nSearching for new country...");
+                            alert("Δεν υπάρχουν γείτονες για τη χώρα " + selectedCountry.name + "!!!\n\nΑναζήτηση νέας χώρας...");
                             game.nextRound();
                         }
                     }
@@ -70,6 +70,7 @@
                         countryDiv.setAttribute("id", "id_" + countryCode);
                         countryDiv.setAttribute("class", "flex-country");
                         countryDiv.setAttribute("style", "border: 5px solid red; background-color: #e8e8e8; word-wrap: break-word;");
+                        countryDiv.setAttribute("onclick","getClickedCountry(this.id)")
                         countryDivHref.setAttribute('href', "#");
                         countryDivHref.setAttribute('onclick', "changeProgressBar(10)");
                         countryDivImage.src = 'https://restcountries.eu/data/' + countryCode + '.svg';
@@ -137,9 +138,8 @@
                     } else throw new Error(response.status);
                 })
                 .then((data) => {
-                    console.log("the data ", data[0].borders)
                     if(data.length<1){
-                        throw new Error("country not found !")
+                        throw new Error("Δεν βρέθηκε η χώρα !")
                     } else {
                         if (data[0].borders.length > 0) {
                             let countryNeighbors = countryObjects.find((s) => s['code3'] === data[0].borders[0])
@@ -171,6 +171,10 @@
             document.getElementById("player_score").innerHTML = score;
         }
 
+        function getClickedCountry(id) {
+            var countryCode3 = id.split("id_");
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelector("#btn-new-game").addEventListener("click", () => {
                 var txt;
@@ -199,6 +203,15 @@
             document.querySelector("#btn-next-round").addEventListener("click", () => {
                 game.nextRound();
             })
+
+
+            /*
+            $('div').click(function(evt){
+                var clicked = evt.target;
+                var currentID = clicked.id || "No ID!";
+                alert(currentID)
+            })
+            */
 
         });
     </script>
