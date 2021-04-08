@@ -59,8 +59,6 @@
                     let neighbors = this.createDisplayedCountries(y);
                     console.log("Country Neighbors: ", neighbors);
                     var i = 0;
-                    game.round = game.round + 1;
-                    changePlayerRound(game.round);
                     for (i = 0; i < neighbors.length; i++) {
                         var countryCode = neighbors[i].code3.toLowerCase();
                         var countryName = neighbors[i].name;
@@ -83,6 +81,8 @@
                         countryDiv.appendChild(countryDivName);
                         element.appendChild(countryDiv);
                     }
+                    game.round = game.round + 1;
+                    changePlayerRound(game.round);
                 });
             }
 
@@ -174,9 +174,13 @@
 
         document.addEventListener("DOMContentLoaded", () => {
             document.querySelector("#btn-new-game").addEventListener("click", () => {
-                game = new Game();
-                game.nextRound();
-                document.getElementById("btn-next-round").disabled = false;
+                var txt;
+                var response = confirm("Σίγουρα; Θα χάσετε όλο σας το σκόρ!");
+                if (response == true) {
+                    game = new Game();
+                    game.nextRound();
+                    document.getElementById("btn-next-round").disabled = false;
+                }
             });
 
             $(window).resize(function () {
