@@ -38,24 +38,27 @@
             }
 
             nextRound(selectedCountry){
-                fetch(urlCountry+selectedCountry.name)
+                fetch(urlCode+selectedCountry.code3.toLowerCase())
                 .then((response) => {
                     if (response.status === 200) {
                         return response.json();
-                    } else throw new Error(response.status);
+                    } else {
+                        throw new Error(response.status);
+                    }
+                    
                 })
                 .then((data) => {
                     document.getElementById("countries_list").innerHTML = ''; // clear the div from previous countries
                     document.getElementById("header_image").src = 'https://restcountries.eu/data/' + selectedCountry.code3.toLowerCase() + '.svg';
                     document.getElementById("header_country").innerHTML = selectedCountry.name;
                     if (data.length < 1) {
-                        throw new Error("Η χώρα δεν βρέθηκε στο API !");
+                        throw new Error("Η χώρα δεν βρέθηκε στο API!");
                     } else {
-                        if (data[0].borders.length > 0) { // οι κωδικοί των γειτόνων
-                            let country = data[0].borders;
+                        if (data.borders.length > 0) {
+                            let country = data.borders;
                             let realNeighbors = new Array();
-                            for(let i=0; i<data[0].borders.length; i++){
-                                realNeighbors.push(countryObjects.find((s) => s['code3']===data[0].borders[i]))
+                            for(let i=0; i<data.borders.length; i++){
+                                realNeighbors.push(countryObjects.find((s) => s['code3']===data.borders[i]))
                             }
                             let playingCountry = new PlayingCountry(selectedCountry.name, realNeighbors);
                             globalNeighbors = realNeighbors;    // reset the real neighbors of the country
@@ -65,6 +68,7 @@
                         }
                         else {
                             let selectedCountry = this.chooseCountry();
+                            console.log("Χώρα: ", selectedCountry.name)
                             game.nextRound(selectedCountry);
                         }
                     }
@@ -169,7 +173,6 @@
             document.getElementById("overlayText").style.display = "block";
             document.getElementById("overlayText").innerHTML = text;
             document.getElementById("overlayText").style.color = color;
-            
         }
 
         function getClickedCountry(div_id) {
