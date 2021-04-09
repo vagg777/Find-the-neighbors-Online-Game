@@ -101,7 +101,8 @@
                         element.appendChild(countryDiv);
                     }
                     var surroundingBox = document.getElementsByClassName("game-panel");
-                    document.getElementById("sidenav").style.height = (surroundingBox[0].clientHeight - 25) + "px";
+                    if (surroundingBox[0].clientWidth > 800) 
+                        document.getElementById("sidenav").style.height = (surroundingBox[0].clientHeight-25) + "px";
                     game.round = game.round + 1;
                     changePlayerRound(game.round);
                 });
@@ -208,7 +209,8 @@
             var round = "lost";
             if (round == "lost"){
                 var surroundingBox = document.getElementsByClassName("game-panel");
-                document.getElementById("sidenav").style.height = (surroundingBox[0].clientHeight - 25) + "px";
+                if (surroundingBox[0].clientWidth > 800) 
+                    document.getElementById("sidenav").style.height = (surroundingBox[0].clientHeight-25) + "px";
                 var countriesBox = document.getElementById("countries_list");
                 let centerX = countriesBox.offsetLeft + countriesBox.offsetWidth/2;
                 let centerY = countriesBox.offsetTop + countriesBox.offsetHeight/2;

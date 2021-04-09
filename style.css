@@ -96,7 +96,7 @@ body {
 
   #btn-next-round { 
     position: absolute;
-    bottom: 80px;
+    bottom: 70px;
     left: 10px;
     width: 140px;     
   }
@@ -174,7 +174,7 @@ body {
   @media screen and (max-width: 800px) {
     #sidenav {
       width: 96%;
-      height: 20px;
+      height: 300px !important;
       position: relative;
       margin-left: -5px;
     }
