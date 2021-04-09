@@ -152,6 +152,7 @@
         function resetOverlay() {
             document.getElementById("overlayBox").style.backgroundColor = "#fff"; 
             document.getElementById("overlayBox").style.opacity = 1.0;
+            document.getElementById("overlayBox").style.pointerEvents = "auto"; // enable functionality on the overlay
             document.getElementById("overlayText").style.display = "none";
             document.getElementById("overlayText").innerHTML = "";
         }
@@ -162,11 +163,13 @@
             let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
             document.getElementById("overlayBox").style.backgroundColor = "rgba(0,0,0,0.5)"; 
             document.getElementById("overlayBox").style.opacity = 0.4;
+            document.getElementById("overlayBox").style.pointerEvents = "none"; // disable functionality on the overlay
             document.getElementById("overlayText").style.left = centerX-100 + "px";
             document.getElementById("overlayText").style.top = centerY-50 + "px";
             document.getElementById("overlayText").style.display = "block";
             document.getElementById("overlayText").innerHTML = text;
             document.getElementById("overlayText").style.color = color;
+            
         }
 
         function getClickedCountry(div_id) {
