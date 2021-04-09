@@ -136,7 +136,10 @@
             var previousWidth = parseInt(elem.style.width, 10); 
             var newstep = step + previousWidth;
             newstep = parseInt(newstep, 10)
-            if (newstep > 95) newstep = 100;
+            if (newstep > 95) {
+                document.getElementById("btn-next-round").disabled = false;
+                newstep = 100;
+            }
             if (step == 0)
                 elem.style.width = step + "%"; 
             else {
@@ -160,10 +163,13 @@
                 document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
                 var progressBarStep = 100/globalNeighbors.length;
                 changeProgressBar(progressBarStep);
-
+                game.score = game.score + 5;
+                changePlayerScore(game.score);
             } else {
                 document.getElementById(div_id).style.border = "2px solid red";
                 document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
+                game.score = game.score -3;
+                changePlayerScore(game.score);
             }
         }
 
@@ -183,15 +189,21 @@
 
         document.addEventListener("DOMContentLoaded", () => {
 
+            // Begin game when page loads for the 1st time
+            game = new Game();
+            let selectedCountry = game.chooseCountry();
+            console.log("Χώρα: ", selectedCountry.name)
+            game.nextRound(selectedCountry);
+
             document.querySelector("#btn-new-game").addEventListener("click", () => {
                 var response = confirm("Σίγουρα; Θα χάσετε όλο σας το σκόρ!");
                 if (response == true) {   
-                    document.getElementById("btn-next-round").disabled = false;
                     game = new Game();
                     let selectedCountry = game.chooseCountry();
                     console.log("Χώρα: ", selectedCountry.name)
                     game.nextRound(selectedCountry);
                     changeProgressBar(0); // reset Progress Bar
+                    changePlayerScore(0);   // reset player score
                 }
             });
 
