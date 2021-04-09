@@ -94,15 +94,19 @@ body {
     display: block;
   }
 
-  #btn-next-round{
-    margin-top: 35%;
+  #btn-next-round { 
+    position: absolute;
+    bottom: 80px;
+    left: 10px;
     width: 140px;     
   }
 
   #btn-new-game {
-    margin-top: 10px;
-    margin-bottom: 10%;
-    width: 140px;   
+    margin-top: 20px;
+    position: absolute;
+    bottom: 20px;
+    left: 10px;
+    width: 140px;    
   }
 
   #header_image {
