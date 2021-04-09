@@ -22,7 +22,6 @@ body {
 
 .game-panel {
     display: grid;
-    border: 5px solid red;
     /* ... */
 }
 
@@ -74,13 +73,13 @@ body {
 -----------------------------------------------------------------------
  */
 
-.sidenav {
+  #sidenav {
     width: 160px;
-    margin-top: 35px;
+    margin-top: 30px;
     position: absolute;
     z-index: 0;
     top: 0;
-    left: 30px;
+    left: 20px;
     background-color: #ff3c94;
     color: white;
     overflow-x: hidden;
@@ -88,7 +87,7 @@ body {
     padding-bottom: 20px; /* space between last sidebar button and div */
   }
   
-  .sidenav p {
+  #sidenav p {
     padding: 0px 8px 0px 16px;
     text-decoration: none;
     color: white;
@@ -96,12 +95,13 @@ body {
   }
 
   #btn-next-round{
-    margin-top: 140px;
+    margin-top: 35%;
     width: 140px;     
   }
 
   #btn-new-game {
     margin-top: 10px;
+    margin-bottom: 10%;
     width: 140px;   
   }
 
@@ -168,11 +168,11 @@ body {
   }
   
   @media screen and (max-width: 800px) {
-    .sidenav {
+    #sidenav {
       width: 96%;
-      height: auto;
+      height: 20px;
       position: relative;
-      margin-left: -20px;
+      margin-left: -5px;
     }
 
     div.content {

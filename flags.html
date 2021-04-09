@@ -100,6 +100,8 @@
                         countryDiv.appendChild(countryDivName);
                         element.appendChild(countryDiv);
                     }
+                    var surroundingBox = document.getElementsByClassName("game-panel");
+                    document.getElementById("sidenav").style.height = (surroundingBox[0].clientHeight - 25) + "px";
                     game.round = game.round + 1;
                     changePlayerRound(game.round);
                 });
@@ -205,9 +207,11 @@
         $(window).resize(function () {
             var round = "lost";
             if (round == "lost"){
-                var elmnt = document.getElementById("countries_list");
-                let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
-                let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
+                var surroundingBox = document.getElementsByClassName("game-panel");
+                document.getElementById("sidenav").style.height = (surroundingBox[0].clientHeight - 25) + "px";
+                var countriesBox = document.getElementById("countries_list");
+                let centerX = countriesBox.offsetLeft + countriesBox.offsetWidth/2;
+                let centerY = countriesBox.offsetTop + countriesBox.offsetHeight/2;
                 document.getElementById("overlayText").style.left = centerX-100 + "px";
                 document.getElementById("overlayText").style.top = centerY-50 + "px";
             } 
@@ -220,7 +224,6 @@
             let selectedCountry = game.chooseCountry();
             console.log("Χώρα: ", selectedCountry.name)
             game.nextRound(selectedCountry);
-
             document.querySelector("#btn-new-game").addEventListener("click", () => {
                 var response = confirm("Σίγουρα; Θα χάσετε όλο σας το σκόρ!");
                 if (response == true) {   
@@ -249,7 +252,7 @@
 <body>
     <div class="game-panel">
         <div class="row-inline">
-            <div class="sidenav">
+            <div id="sidenav">
                 <p><strong>Βρες τους γείτονες</strong></p><br>
                 <div style="overflow: hidden;">
                     <p style="float: left;">Γύρος: </p>
