@@ -23,6 +23,13 @@
         var globalFoundCountries = 0;
         var globalWrongCountries = 0;
 
+        class PlayingCountry{
+            constructor(country, neighbours){
+                this.country = country;
+                this.neighbours = neighbours;
+            }  
+        }
+
         class Game{
 
             constructor(){
@@ -51,8 +58,9 @@
                                 realNeighbors.push(countryObjects.find((s) => s['code3']===data[0].borders[i]))
                             }
                             let playingCountry = new PlayingCountry(selectedCountry.name, realNeighbors);
-                            globalNeighbors = realNeighbors;
-                            globalFoundCountries = 0;
+                            globalNeighbors = realNeighbors;    // reset the real neighbors of the country
+                            globalFoundCountries = 0;           // reset the real neighbors found by the user
+                            globalWrongCountries = 0;           // reset the wrong choices the user made
                             return playingCountry;
                         }
                         else {
@@ -128,13 +136,6 @@
 
         }
 
-        class PlayingCountry{
-            constructor(country, neighbours){
-                this.country = country;
-                this.neighbours = neighbours;
-            }  
-        }
-       
         function changeProgressBar(step) {
             var elem = document.getElementById("progress-bar");
             elem.style.width = step + "%";   
@@ -177,7 +178,7 @@
                 var progressBarStep = globalFoundCountries/globalNeighbors.length * 100;
                 changeProgressBar(progressBarStep);
                 if (progressBarStep == 100) {
-                    document.getElementById("btn-next-round").disabled = false; // if all countries found, enable the button for next round
+                    document.getElementById("btn-next-round").disabled = false; // if all countries found, win roundenable the button for next round
                     displayOverlay("Τους βρήκατε όλους", "black");
                 }
                 game.score = game.score + 5;
@@ -188,7 +189,7 @@
                 game.score = game.score - 3;
                 globalWrongCountries = globalWrongCountries + 1;
                 if (globalWrongCountries === globalNeighbors.length){
-                    document.getElementById("btn-next-round").disabled = false; // if all countries found, enable the button for next round
+                    document.getElementById("btn-next-round").disabled = false; // if max number of wrong countries selected, lose round and enable the button for next round
                     displayOverlay("Κρίμα, χάσατε!", "red");
                 }
                 changePlayerScore(game.score);
