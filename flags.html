@@ -138,7 +138,6 @@
         function changeProgressBar(step) {
             var elem = document.getElementById("progress-bar");
             elem.style.width = step + "%";   
-            //elem.innerHTML = step  + "%"; // enable this to write the % on the progressBar
         }
 
         function changePlayerRound(round) {
@@ -149,12 +148,19 @@
             document.getElementById("player_score").innerHTML = score;
         }
 
+        function resetOverlay() {
+            document.getElementById("overlayBox").style.backgroundColor = "#fff"; 
+            document.getElementById("overlayBox").style.opacity = 1.0;
+            document.getElementById("overlayText").style.display = "none";
+            document.getElementById("overlayText").innerHTML = "";
+        }
+
         function displayOverlay(text,color) {
             var elmnt = document.getElementById("countries_list");
             let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
             let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
             document.getElementById("overlayBox").style.backgroundColor = "rgba(0,0,0,0.5)"; 
-            document.getElementById("overlayBox").style.opacity = 0.1;
+            document.getElementById("overlayBox").style.opacity = 0.4;
             document.getElementById("overlayText").style.left = centerX-100 + "px";
             document.getElementById("overlayText").style.top = centerY-50 + "px";
             document.getElementById("overlayText").style.display = "block";
@@ -182,6 +188,7 @@
                 game.score = game.score - 3;
                 globalWrongCountries = globalWrongCountries + 1;
                 if (globalWrongCountries === globalNeighbors.length){
+                    document.getElementById("btn-next-round").disabled = false; // if all countries found, enable the button for next round
                     displayOverlay("Κρίμα, χάσατε!", "red");
                 }
                 changePlayerScore(game.score);
@@ -194,11 +201,8 @@
                 var elmnt = document.getElementById("countries_list");
                 let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
                 let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
-                document.getElementById("overlayBox").style.backgroundColor = "rgba(0,0,0,0.5)"; 
-                document.getElementById("overlayBox").style.opacity = 0.1;
                 document.getElementById("overlayText").style.left = centerX-100 + "px";
                 document.getElementById("overlayText").style.top = centerY-50 + "px";
-                document.getElementById("overlayText").style.display = "block";
             } 
         });
 
@@ -217,8 +221,9 @@
                     let selectedCountry = game.chooseCountry();
                     console.log("Χώρα: ", selectedCountry.name)
                     game.nextRound(selectedCountry);
-                    changeProgressBar(0); // reset Progress Bar
+                    changeProgressBar(0);   // reset Progress Bar
                     changePlayerScore(0);   // reset player score
+                    resetOverlay();         // remove the overlay message
                 }
             });
 
@@ -226,7 +231,8 @@
                 let selectedCountry = game.chooseCountry();
                 console.log("Χώρα: ", selectedCountry.name)
                 game.nextRound(selectedCountry);
-                changeProgressBar(0); // reset Progress Bar
+                changeProgressBar(0);       // reset Progress Bar
+                resetOverlay();             // remove the overlay message
             })
 
         });
@@ -262,7 +268,7 @@
                 </div>
                 <div id="overlayBox">
                     <ul class="flex-container wrap" id="countries_list"></ul>
-                    <div id="overlayText"></div>
+                    <strong><div id="overlayText"></div></strong>
                 </div>
             </div>
         </div> 
