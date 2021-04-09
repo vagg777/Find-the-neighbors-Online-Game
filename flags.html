@@ -20,6 +20,8 @@
 
         var globalCountry = "";
         var globalNeighbors = "";
+        var globalFoundCountries = 0;
+
         class Game{
 
             constructor(){
@@ -43,12 +45,13 @@
                     } else {
                         if (data[0].borders.length > 0) { // οι κωδικοί των γειτόνων
                             let country = data[0].borders;
-                            let realMeighbors = new Array();
+                            let realNeighbors = new Array();
                             for(let i=0; i<data[0].borders.length; i++){
-                                realMeighbors.push(countryObjects.find((s) => s['code3']===data[0].borders[i]))
+                                realNeighbors.push(countryObjects.find((s) => s['code3']===data[0].borders[i]))
                             }
-                            let playingCountry = new PlayingCountry(selectedCountry.name, realMeighbors);
-                            globalNeighbors = realMeighbors;
+                            let playingCountry = new PlayingCountry(selectedCountry.name, realNeighbors);
+                            globalNeighbors = realNeighbors;
+                            globalFoundCountries = 0;
                             return playingCountry;
                         }
                         else {
@@ -133,19 +136,10 @@
        
         function changeProgressBar(step) {
             var elem = document.getElementById("progress-bar");
-            var previousWidth = parseInt(elem.style.width, 10); 
-            var newstep = step + previousWidth;
-            newstep = parseInt(newstep, 10)
-            if (newstep > 95) {
+            if (step == 100)
                 document.getElementById("btn-next-round").disabled = false;
-                newstep = 100;
-            }
-            if (step == 0)
-                elem.style.width = step + "%"; 
-            else {
-                elem.style.width = newstep + "%"; 
-                elem.innerHTML = newstep  + "%";
-            }
+            elem.style.width = step + "%"; 
+            elem.innerHTML = step  + "%";
         }
 
         function changePlayerRound(round) {
@@ -161,7 +155,8 @@
             if (globalNeighbors.find((s) => s['code3']===clickedCountryCode) != undefined){
                 document.getElementById(div_id).style.border = "2px solid green";
                 document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
-                var progressBarStep = 100/globalNeighbors.length;
+                globalFoundCountries = globalFoundCountries + 1;
+                var progressBarStep = globalFoundCountries/globalNeighbors.length * 100;
                 changeProgressBar(progressBarStep);
                 game.score = game.score + 5;
                 changePlayerScore(game.score);
