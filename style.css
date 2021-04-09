@@ -162,8 +162,6 @@ body {
   }  
 
   #overlayText {
-    background-color: black;
-    color: red;
     position: absolute;
     font-size: 40px;
     display: none;
