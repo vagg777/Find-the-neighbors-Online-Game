@@ -23,6 +23,7 @@
         var globalFoundCountries = 0;
         var globalWrongCountries = 0;
         var globalClickedCountries = [];
+
         class PlayingCountry{
             constructor(country, neighbours){
                 this.country = country;
@@ -49,8 +50,8 @@
                 })
                 .then((data) => {
                     document.getElementById("countries_list").innerHTML = ''; // clear the div from previous countries
-                    document.getElementById("header_image").src = 'https://restcountries.eu/data/' + selectedCountry.code3.toLowerCase() + '.svg';
-                    document.getElementById("header_country").innerHTML = selectedCountry.name;
+                    document.getElementById("my-country-flag").src = 'https://restcountries.eu/data/' + selectedCountry.code3.toLowerCase() + '.svg';
+                    document.getElementById("my-country-name").innerHTML = selectedCountry.name;
                     if (data.length < 1) {
                         throw new Error("Η χώρα δεν βρέθηκε!");
                     } else {
@@ -73,6 +74,7 @@
                         }
                     }
                 }).then(playingCountry=>{
+                    globalClickedCountries = []; // empty the list for each playing round
                     let possibleNeighbors = this.createDisplayedCountries(playingCountry);
                     globalCountry = selectedCountry;
                     console.log("Γείτονες που θα εμφανιστούν στο παίκτη: ", possibleNeighbors);
@@ -106,7 +108,7 @@
                     }
                     var surroundingBox = document.getElementsByClassName("game-panel");
                     if (surroundingBox[0].clientWidth > 800) 
-                        document.getElementById("sidenav").style.height = (surroundingBox[0].clientHeight-25) + "px";
+                        document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px";
                     game.round = game.round + 1;
                     changePlayerRound(game.round);
                 });
@@ -195,7 +197,7 @@
                 var progressBarStep = globalFoundCountries/globalNeighbors.length * 100;
                 changeProgressBar(progressBarStep);
                 if (progressBarStep == 100) {
-                    document.getElementById("btn-next-round").disabled = false; // if all countries found, win roundenable the button for next round
+                    document.getElementById("btn-next-round").disabled = false; // if all countries found, win round and enable the button for next round
                     displayOverlay("Τους βρήκατε όλους", "black");
                 }
                 game.score = game.score + 5;
@@ -218,7 +220,7 @@
             if (round == "lost"){
                 var surroundingBox = document.getElementsByClassName("game-panel");
                 if (surroundingBox[0].clientWidth > 800) 
-                    document.getElementById("sidenav").style.height = (surroundingBox[0].clientHeight-25) + "px";
+                    document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px";
                 var countriesBox = document.getElementById("countries_list");
                 let centerX = countriesBox.offsetLeft + countriesBox.offsetWidth/2;
                 let centerY = countriesBox.offsetTop + countriesBox.offsetHeight/2;
@@ -262,7 +264,7 @@
 <body>
     <div class="game-panel">
         <div class="row-inline">
-            <div id="sidenav">
+            <div id="sidebar">
                 <p><strong>Βρες τους γείτονες</strong></p><br>
                 <div style="overflow: hidden;">
                     <p style="float: left;">Γύρος: </p>
@@ -280,8 +282,8 @@
 
             <div class="main">
                 <h2>
-                    <img id="header_image">
-                    <p id="header_country"></p>
+                    <img id="my-country-flag">
+                    <p id="my-country-name"></p>
                 </h2>
                 <div class="progress">
                     <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
