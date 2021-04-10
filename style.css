@@ -62,7 +62,7 @@ body {
 όσον αφορά το CSS (που και σε αυτόν έχει προβληματική υποστήριξη)
 */
 
-#progress::-webkit-progress-bar {
+.progress::-webkit-progress-bar {
     border-radius: 5px;
 }
 

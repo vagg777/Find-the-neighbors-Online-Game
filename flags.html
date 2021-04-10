@@ -22,7 +22,7 @@
         var globalNeighbors = "";
         var globalFoundCountries = 0;
         var globalWrongCountries = 0;
-
+        var globalClickedCountries = [];
         class PlayingCountry{
             constructor(country, neighbours){
                 this.country = country;
@@ -52,7 +52,7 @@
                     document.getElementById("header_image").src = 'https://restcountries.eu/data/' + selectedCountry.code3.toLowerCase() + '.svg';
                     document.getElementById("header_country").innerHTML = selectedCountry.name;
                     if (data.length < 1) {
-                        throw new Error("Η χώρα δεν βρέθηκε στο API!");
+                        throw new Error("Η χώρα δεν βρέθηκε!");
                     } else {
                         if (data.borders.length > 0) {
                             let country = data.borders;
@@ -75,7 +75,7 @@
                 }).then(playingCountry=>{
                     let possibleNeighbors = this.createDisplayedCountries(playingCountry);
                     globalCountry = selectedCountry;
-                    console.log("Πιθανοί Γείτονες Χώρας: ", possibleNeighbors);
+                    console.log("Γείτονες που θα εμφανιστούν στο παίκτη: ", possibleNeighbors);
                     var i = 0;
                     for (i = 0; i < possibleNeighbors.length; i++) {
                         var countryCode = possibleNeighbors[i].code3.toLowerCase();
@@ -99,6 +99,10 @@
                         countryDiv.appendChild(countryDivImage);
                         countryDiv.appendChild(countryDivName);
                         element.appendChild(countryDiv);
+                    }
+                    console.log("Πραγματικοί Γείτονες: ");
+                    for (var i=0; i<globalNeighbors.length; i++) {
+                        console.log(globalNeighbors[i]);
                     }
                     var surroundingBox = document.getElementsByClassName("game-panel");
                     if (surroundingBox[0].clientWidth > 800) 
@@ -168,21 +172,25 @@
             var elmnt = document.getElementById("countries_list");
             let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
             let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
-            document.getElementById("overlayBox").style.backgroundColor = "rgba(0,0,0,0.5)"; 
-            document.getElementById("overlayBox").style.opacity = 0.4;
+            document.getElementById("overlayBox").style.backgroundColor = "rgb(0,0,0,0.4)"; 
+            document.getElementById("overlayBox").style.opacity = 0.3;
             document.getElementById("overlayBox").style.pointerEvents = "none"; // disable functionality on the overlay
             document.getElementById("overlayText").style.left = centerX-100 + "px";
             document.getElementById("overlayText").style.top = centerY-50 + "px";
             document.getElementById("overlayText").style.display = "block";
             document.getElementById("overlayText").innerHTML = text;
             document.getElementById("overlayText").style.color = color;
+            for (var i = 0; i < globalClickedCountries.length; i++) {
+                document.getElementById(globalClickedCountries[i]).style.backgroundColor = "gray"; 
+            }
         }
 
         function getClickedCountry(div_id) {
+            globalClickedCountries.push(div_id);    // gather all the clicked ids of the countries
             var clickedCountryCode = div_id.split("id_")[1].toUpperCase();
             if (globalNeighbors.find((s) => s['code3']===clickedCountryCode) != undefined){
                 document.getElementById(div_id).style.border = "2px solid green";
-                document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
+                document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
                 globalFoundCountries = globalFoundCountries + 1;
                 var progressBarStep = globalFoundCountries/globalNeighbors.length * 100;
                 changeProgressBar(progressBarStep);
@@ -194,7 +202,7 @@
                 changePlayerScore(game.score);
             } else {
                 document.getElementById(div_id).style.border = "2px solid red";
-                document.getElementById(div_id).style.backgroundColor = "#e8e8e8";
+                document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
                 game.score = game.score - 3;
                 globalWrongCountries = globalWrongCountries + 1;
                 if (globalWrongCountries === globalNeighbors.length){
