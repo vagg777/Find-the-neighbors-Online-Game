@@ -166,6 +166,7 @@ body {
     margin-right: 20px;
     margin-top: 10px;
     width: 140px;
+    flex: 1;          /* countries must fill the flex contaier at all times */
   }
   
   .wrap { 
