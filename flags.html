@@ -47,9 +47,6 @@
                     }
                 })
                 .then((result) => {
-                    document.getElementById("countries_flexbox").innerHTML = ''; // clear the div from previous countries
-                    document.getElementById("my-country-flag").src = 'https://restcountries.eu/data/' + country.code3.toLowerCase() + '.svg';
-                    document.getElementById("my-country-name").innerHTML = country.name;
                     if (result.length < 1) {
                         throw new Error("Η χώρα δεν βρέθηκε!");
                     } else {
@@ -76,6 +73,9 @@
                     let possibleNeighbors = this.generateNeighbors(playingCountry); // the neighbors to appear in the Flexbox
                     globalCountry = country;
                     console.log("Γείτονες που θα εμφανιστούν στο παίκτη: ", possibleNeighbors);
+                    document.getElementById("countries_flexbox").innerHTML = ''; // clear the div from previous countries
+                    document.getElementById("my-country-flag").src = 'https://restcountries.eu/data/' + country.code3.toLowerCase() + '.svg';
+                    document.getElementById("my-country-name").innerHTML = country.name;
                     for (var i = 0; i < possibleNeighbors.length; i++) {
                         var countryCode = possibleNeighbors[i].code3.toLowerCase();
                         var countryName = possibleNeighbors[i].name;
