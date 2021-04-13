@@ -87,7 +87,7 @@
                         countryDiv.setAttribute("id", "id_" + countryCode);
                         countryDiv.setAttribute("class", "flex-country");
                         countryDiv.setAttribute("style", "word-wrap: break-word;");
-                        countryDiv.setAttribute("onclick","getClickedCountry(this.id)")
+                        countryDiv.setAttribute("onclick","game.getClickedCountry(this.id)")
                         countryDivHref.setAttribute('href', "#");
                         countryDivHref.setAttribute('onclick', "changeProgressBar(10)");
                         countryDivImage.src = 'https://restcountries.eu/data/' + countryCode + '.svg';
@@ -154,6 +154,9 @@
                 document.getElementById("overlayBox").style.pointerEvents = "auto"; // enable functionality on the overlay
                 document.getElementById("overlayText").style.display = "none";
                 document.getElementById("overlayText").innerHTML = "";
+                for (var i = 0; i < globalClickedCountries.length; i++) {
+                    document.getElementById(globalClickedCountries[i]).style.backgroundColor = "#fff"; 
+                }
             }
 
             displayOverlay(text,color) {
@@ -173,35 +176,37 @@
                 }
             }
 
+            getClickedCountry(div_id) {
+                globalClickedCountries.push(div_id);    // gather all the clicked ids of the countries
+                var clickedCountryCode = div_id.split("id_")[1].toUpperCase();
+                if (globalNeighbors.find((s) => s['code3']===clickedCountryCode) != undefined){
+                    document.getElementById(div_id).style.border = "2px solid green";
+                    document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
+                    globalFoundCountries = globalFoundCountries + 1;
+                    var progressBarStep = globalFoundCountries/globalNeighbors.length * 100;
+                    game.changeDisplayedStats(game.round, game.score, progressBarStep)
+                    if (progressBarStep == 100) {
+                        document.getElementById("btn-next-round").disabled = false; // if all countries found, win round and enable the button for next round
+                        game.displayOverlay("Τους βρήκατε όλους", "black");
+                    }
+                    game.score = game.score + 5;
+                    game.changeDisplayedStats(game.round, game.score, progressBarStep)
+                } else {
+                    document.getElementById(div_id).style.border = "2px solid red";
+                    document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
+                    game.score = game.score - 3;
+                    globalWrongCountries = globalWrongCountries + 1;
+                    if (globalWrongCountries === globalNeighbors.length){
+                        document.getElementById("btn-next-round").disabled = false; // if max number of wrong countries selected, lose round and enable the button for next round
+                        game.displayOverlay("Κρίμα, χάσατε!", "red");
+                    }
+                    game.changeDisplayedStats(game.round, game.score, progressBarStep)
+                }
+            }
+
         }
 
-        function getClickedCountry(div_id) {
-            globalClickedCountries.push(div_id);    // gather all the clicked ids of the countries
-            var clickedCountryCode = div_id.split("id_")[1].toUpperCase();
-            if (globalNeighbors.find((s) => s['code3']===clickedCountryCode) != undefined){
-                document.getElementById(div_id).style.border = "2px solid green";
-                document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
-                globalFoundCountries = globalFoundCountries + 1;
-                var progressBarStep = globalFoundCountries/globalNeighbors.length * 100;
-                game.changeDisplayedStats(game.round, game.score, progressBarStep)
-                if (progressBarStep == 100) {
-                    document.getElementById("btn-next-round").disabled = false; // if all countries found, win round and enable the button for next round
-                    game.displayOverlay("Τους βρήκατε όλους", "black");
-                }
-                game.score = game.score + 5;
-                game.changeDisplayedStats(game.round, game.score, progressBarStep)
-            } else {
-                document.getElementById(div_id).style.border = "2px solid red";
-                document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
-                game.score = game.score - 3;
-                globalWrongCountries = globalWrongCountries + 1;
-                if (globalWrongCountries === globalNeighbors.length){
-                    document.getElementById("btn-next-round").disabled = false; // if max number of wrong countries selected, lose round and enable the button for next round
-                    game.displayOverlay("Κρίμα, χάσατε!", "red");
-                }
-                game.changeDisplayedStats(game.round, game.score, progressBarStep)
-            }
-        }
+        
 
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -223,7 +228,7 @@
             });
 
             document.querySelector("#btn-next-round").addEventListener("click", () => {
-                let countryy = game.chooseRandomCountry();
+                let country = game.chooseRandomCountry();
                 console.log("Χώρα: ", country)
                 game.nextRound(country);
                 game.changeDisplayedStats(game.round, game.score, 0) // reset the progressbar
@@ -231,17 +236,14 @@
             })
 
             $(window).resize(function () {
-                var round = "lost";
-                if (round == "lost"){
-                    var surroundingBox = document.getElementsByClassName("game-panel");
-                    if (surroundingBox[0].clientWidth > 800) 
-                        document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px";
-                    var countriesBox = document.getElementById("countries_flexbox");
-                    let centerX = countriesBox.offsetLeft + countriesBox.offsetWidth/2;
-                    let centerY = countriesBox.offsetTop + countriesBox.offsetHeight/2;
-                    document.getElementById("overlayText").style.left = centerX-100 + "px";
-                    document.getElementById("overlayText").style.top = centerY-50 + "px";
-                } 
+                var surroundingBox = document.getElementsByClassName("game-panel");
+                if (surroundingBox[0].clientWidth > 800) 
+                    document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px"; // ensure correct sidebar height to go along with the countries flexbox
+                var countriesBox = document.getElementById("countries_flexbox");
+                let centerX = countriesBox.offsetLeft + countriesBox.offsetWidth/2;
+                let centerY = countriesBox.offsetTop + countriesBox.offsetHeight/2;
+                document.getElementById("overlayText").style.left = centerX-100 + "px";
+                document.getElementById("overlayText").style.top = centerY-50 + "px";
             });
 
         });
