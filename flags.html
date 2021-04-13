@@ -107,7 +107,7 @@
                     if (surroundingBox[0].clientWidth > 800) 
                         document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px";
                     game.round = game.round + 1;
-                    changeDisplayedStats(game.round, game.score, 0)
+                    game.changeDisplayedStats(game.round, game.score, 0)
                     document.getElementById("btn-next-round").disabled = true; // disable the New Round button
                 });
             }
@@ -141,38 +141,38 @@
                 return displayCountriesList;
             }
 
-        }
-
-        function changeDisplayedStats(round, score, progressBarStep) {
-            var elem = document.getElementById("progress-bar");
-            elem.style.width = progressBarStep + "%";   
-            document.getElementById("player_round").innerHTML = round;
-            document.getElementById("player_score").innerHTML = score;
-        }
-
-        function resetOverlay() {
-            document.getElementById("overlayBox").style.backgroundColor = "#fff"; 
-            document.getElementById("overlayBox").style.opacity = 1.0;
-            document.getElementById("overlayBox").style.pointerEvents = "auto"; // enable functionality on the overlay
-            document.getElementById("overlayText").style.display = "none";
-            document.getElementById("overlayText").innerHTML = "";
-        }
-
-        function displayOverlay(text,color) {
-            var elmnt = document.getElementById("countries_flexbox");
-            let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
-            let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
-            document.getElementById("overlayBox").style.backgroundColor = "rgb(0,0,0,0.4)"; 
-            document.getElementById("overlayBox").style.opacity = 0.3;
-            document.getElementById("overlayBox").style.pointerEvents = "none"; // disable functionality on the overlay
-            document.getElementById("overlayText").style.left = centerX-100 + "px";
-            document.getElementById("overlayText").style.top = centerY-50 + "px";
-            document.getElementById("overlayText").style.display = "block";
-            document.getElementById("overlayText").innerHTML = text;
-            document.getElementById("overlayText").style.color = color;
-            for (var i = 0; i < globalClickedCountries.length; i++) {
-                document.getElementById(globalClickedCountries[i]).style.backgroundColor = "#a6a6a6"; 
+            changeDisplayedStats(round, score, progressBarStep) {
+                var elem = document.getElementById("progress-bar");
+                elem.style.width = progressBarStep + "%";   
+                document.getElementById("player_round").innerHTML = round;
+                document.getElementById("player_score").innerHTML = score;
             }
+
+            resetOverlay() {
+                document.getElementById("overlayBox").style.backgroundColor = "#fff"; 
+                document.getElementById("overlayBox").style.opacity = 1.0;
+                document.getElementById("overlayBox").style.pointerEvents = "auto"; // enable functionality on the overlay
+                document.getElementById("overlayText").style.display = "none";
+                document.getElementById("overlayText").innerHTML = "";
+            }
+
+            displayOverlay(text,color) {
+                var elmnt = document.getElementById("countries_flexbox");
+                let centerX = elmnt.offsetLeft + elmnt.offsetWidth/2;
+                let centerY = elmnt.offsetTop + elmnt.offsetHeight/2;
+                document.getElementById("overlayBox").style.backgroundColor = "rgb(0,0,0,0.4)"; 
+                document.getElementById("overlayBox").style.opacity = 0.3;
+                document.getElementById("overlayBox").style.pointerEvents = "none"; // disable functionality on the overlay
+                document.getElementById("overlayText").style.left = centerX-100 + "px";
+                document.getElementById("overlayText").style.top = centerY-50 + "px";
+                document.getElementById("overlayText").style.display = "block";
+                document.getElementById("overlayText").innerHTML = text;
+                document.getElementById("overlayText").style.color = color;
+                for (var i = 0; i < globalClickedCountries.length; i++) {
+                    document.getElementById(globalClickedCountries[i]).style.backgroundColor = "#a6a6a6"; 
+                }
+            }
+
         }
 
         function getClickedCountry(div_id) {
@@ -183,13 +183,13 @@
                 document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
                 globalFoundCountries = globalFoundCountries + 1;
                 var progressBarStep = globalFoundCountries/globalNeighbors.length * 100;
-                changeDisplayedStats(game.round, game.score, progressBarStep)
+                game.changeDisplayedStats(game.round, game.score, progressBarStep)
                 if (progressBarStep == 100) {
                     document.getElementById("btn-next-round").disabled = false; // if all countries found, win round and enable the button for next round
-                    displayOverlay("Τους βρήκατε όλους", "black");
+                    game.displayOverlay("Τους βρήκατε όλους", "black");
                 }
                 game.score = game.score + 5;
-                changeDisplayedStats(game.round, game.score, progressBarStep)
+                game.changeDisplayedStats(game.round, game.score, progressBarStep)
             } else {
                 document.getElementById(div_id).style.border = "2px solid red";
                 document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
@@ -197,25 +197,11 @@
                 globalWrongCountries = globalWrongCountries + 1;
                 if (globalWrongCountries === globalNeighbors.length){
                     document.getElementById("btn-next-round").disabled = false; // if max number of wrong countries selected, lose round and enable the button for next round
-                    displayOverlay("Κρίμα, χάσατε!", "red");
+                    game.displayOverlay("Κρίμα, χάσατε!", "red");
                 }
-                changeDisplayedStats(game.round, game.score, progressBarStep)
+                game.changeDisplayedStats(game.round, game.score, progressBarStep)
             }
         }
-
-        $(window).resize(function () {
-            var round = "lost";
-            if (round == "lost"){
-                var surroundingBox = document.getElementsByClassName("game-panel");
-                if (surroundingBox[0].clientWidth > 800) 
-                    document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px";
-                var countriesBox = document.getElementById("countries_flexbox");
-                let centerX = countriesBox.offsetLeft + countriesBox.offsetWidth/2;
-                let centerY = countriesBox.offsetTop + countriesBox.offsetHeight/2;
-                document.getElementById("overlayText").style.left = centerX-100 + "px";
-                document.getElementById("overlayText").style.top = centerY-50 + "px";
-            } 
-        });
 
         document.addEventListener("DOMContentLoaded", () => {
 
@@ -231,8 +217,8 @@
                     let country = game.chooseRandomCountry();
                     console.log("Χώρα: ", country)
                     game.nextRound(country);
-                    changeDisplayedStats(0,0,0) // reset round, score, progressbar
-                    resetOverlay();         // remove the overlay message
+                    game.changeDisplayedStats(1,0,0) // reset round, score, progressbar
+                    game.resetOverlay();         // remove the overlay message
                 }
             });
 
@@ -240,9 +226,23 @@
                 let countryy = game.chooseRandomCountry();
                 console.log("Χώρα: ", country)
                 game.nextRound(country);
-                changeDisplayedStats(game.round, game.score, 0) // reset the progressbar
-                resetOverlay();             // remove the overlay message
+                game.changeDisplayedStats(game.round, game.score, 0) // reset the progressbar
+                game.resetOverlay();             // remove the overlay message
             })
+
+            $(window).resize(function () {
+                var round = "lost";
+                if (round == "lost"){
+                    var surroundingBox = document.getElementsByClassName("game-panel");
+                    if (surroundingBox[0].clientWidth > 800) 
+                        document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px";
+                    var countriesBox = document.getElementById("countries_flexbox");
+                    let centerX = countriesBox.offsetLeft + countriesBox.offsetWidth/2;
+                    let centerY = countriesBox.offsetTop + countriesBox.offsetHeight/2;
+                    document.getElementById("overlayText").style.left = centerX-100 + "px";
+                    document.getElementById("overlayText").style.top = centerY-50 + "px";
+                } 
+            });
 
         });
     </script>
