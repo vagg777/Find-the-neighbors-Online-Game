@@ -108,6 +108,7 @@
                         document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px";
                     game.round = game.round + 1;
                     changeDisplayedStats(game.round, game.score, 0)
+                    document.getElementById("btn-next-round").disabled = true; // disable the New Round button
                 });
             }
 
