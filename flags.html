@@ -107,14 +107,24 @@
                     if (surroundingBox[0].clientWidth > 800) 
                         document.getElementById("sidebar").style.height = (surroundingBox[0].clientHeight-25) + "px";
                     game.round = game.round + 1;
-                    changePlayerRound(game.round);
+                    changeDisplayedStats(game.round, game.score, 0)
                 });
+            }
+
+            chooseRandomCountry() {               
+                let arrayWithSuffledCountries = shuffleArray(countryObjects);
+                while (previousPlayedCountries.find((s) => s['code']===arrayWithSuffledCountries[0]['code']) != undefined){
+                    arrayWithSuffledCountries = shuffleArray(countryObjects);
+                }
+                let country = arrayWithSuffledCountries[0];
+                previousPlayedCountries.push(country);
+                return country
             }
 
             generateNeighbors(playingCountry) {
                 let list= new Array();
                 for (let i=0; i<playingCountry.neighbours.length; i++){
-                    list.push( countryObjects.find((s) => s['code3']===playingCountry.neighbours[i].code3))
+                    list.push(countryObjects.find((s) => s['code3']===playingCountry.neighbours[i].code3))
                 }
                 let numberOfNeededCountries = playingCountry.neighbours.length * 3;
                 while (list.length < numberOfNeededCountries)
@@ -123,35 +133,19 @@
                     while (list.find((s) => s['code']===arrayWithSuffledCountries[0]['code']) != undefined){
                         arrayWithSuffledCountries = shuffleArray(countryObjects);
                     }
-                    list.push(arrayWithSuffledCountries[0]);
                     let country = arrayWithSuffledCountries[0];
+                    list.push(country);
                 }
                 let displayCountriesList = shuffleArray(list);
                 return displayCountriesList;
             }
 
-            chooseRandomCountry() {               
-                let arrayWithSuffledCountries = shuffleArray(countryObjects);
-                while ( previousPlayedCountries.find((s) => s['code']===arrayWithSuffledCountries[0]['code']) != undefined){
-                    arrayWithSuffledCountries = shuffleArray(countryObjects);
-                }
-                previousPlayedCountries.push(arrayWithSuffledCountries[0]);
-                let country = arrayWithSuffledCountries[0]
-                return country
-            }
-
         }
 
-        function changeProgressBar(step) {
+        function changeDisplayedStats(round, score, progressBarStep) {
             var elem = document.getElementById("progress-bar");
-            elem.style.width = step + "%";   
-        }
-
-        function changePlayerRound(round) {
+            elem.style.width = progressBarStep + "%";   
             document.getElementById("player_round").innerHTML = round;
-        }
-
-        function changePlayerScore(score) {
             document.getElementById("player_score").innerHTML = score;
         }
 
@@ -188,13 +182,13 @@
                 document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
                 globalFoundCountries = globalFoundCountries + 1;
                 var progressBarStep = globalFoundCountries/globalNeighbors.length * 100;
-                changeProgressBar(progressBarStep);
+                changeDisplayedStats(game.round, game.score, progressBarStep)
                 if (progressBarStep == 100) {
                     document.getElementById("btn-next-round").disabled = false; // if all countries found, win round and enable the button for next round
                     displayOverlay("Τους βρήκατε όλους", "black");
                 }
                 game.score = game.score + 5;
-                changePlayerScore(game.score);
+                changeDisplayedStats(game.round, game.score, progressBarStep)
             } else {
                 document.getElementById(div_id).style.border = "2px solid red";
                 document.getElementById(div_id).style.backgroundColor = "#f2f2f2";
@@ -204,7 +198,7 @@
                     document.getElementById("btn-next-round").disabled = false; // if max number of wrong countries selected, lose round and enable the button for next round
                     displayOverlay("Κρίμα, χάσατε!", "red");
                 }
-                changePlayerScore(game.score);
+                changeDisplayedStats(game.round, game.score, progressBarStep)
             }
         }
 
@@ -236,8 +230,7 @@
                     let country = game.chooseRandomCountry();
                     console.log("Χώρα: ", country)
                     game.nextRound(country);
-                    changeProgressBar(0);   // reset Progress Bar
-                    changePlayerScore(0);   // reset player score
+                    changeDisplayedStats(0,0,0) // reset round, score, progressbar
                     resetOverlay();         // remove the overlay message
                 }
             });
@@ -246,7 +239,7 @@
                 let countryy = game.chooseRandomCountry();
                 console.log("Χώρα: ", country)
                 game.nextRound(country);
-                changeProgressBar(0);       // reset Progress Bar
+                changeDisplayedStats(game.round, game.score, 0) // reset the progressbar
                 resetOverlay();             // remove the overlay message
             })
 
