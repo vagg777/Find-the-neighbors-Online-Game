@@ -21,6 +21,15 @@ The following online game was developed for personal puproses in a group of 2 de
 
 Image 1: The FlexBox effect on a playing country (Peru) that has too many neighbors gives more space in the last row
 
++++
+
++++
+
++++
+
++++
+
++++
 
 ## 3. Playing the Game
 
