@@ -57,5 +57,5 @@ Image 6: Resizing the game (below 800 pixels)
 The steps to deploy the website should be the following:
 
 1. Clone the project using the command `git clone https://github.com/yourUsernameHere/Mathesis_Countries.git`
-2. Install the `Live Server Extension` and press Go Live on the bottom right corner of `Visual Studio Code`.
+2. Install the `Live Server Extension` and press Go Live on the bottom right corner of `Visual Studio Code`
 3. That's it! You have successfully deployed the game...
