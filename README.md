@@ -1,6 +1,7 @@
 # 'Find the neighbors' Online Game!!
 ## 0. Project Contributors
 Evangelos Michos
+
 Spyridon Aniceto Katsampiris Salgado
 
 ## 1. Introduction in the Game
