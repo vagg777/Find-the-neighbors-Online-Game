@@ -61,7 +61,7 @@ Image 6: Resizing the game (below 800 pixels)
 * Programming Language : `HTML/CSS/JavaScript`
 * CSS Version : `Boostrap 5.0.0`
 
-# 4. Deploying the platform
+## 4. Deploying the platform
 
 The steps to deploy the website should be the following:
 
