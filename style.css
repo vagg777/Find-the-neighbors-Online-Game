@@ -39,11 +39,11 @@ body {
   display: block;
 }
 
-#player-round-text ,#player-score-text {
+#player-round-text, #player-score-text {
   float: left;
 }
 
-#player-round-value ,#player-score-value {
+#player-round-value, #player-score-value {
   float: right;
 }
 

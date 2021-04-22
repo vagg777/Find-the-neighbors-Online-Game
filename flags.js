@@ -172,7 +172,7 @@ class Game{
             game.changeDisplayedStats(game.round, game.score, progressBarStep)
             if (progressBarStep == 100) {
                 document.getElementById("btn-next-round").disabled = false; // if all countries found, win round and enable the button for next round
-                game.displayOverlay("Τους βρήκατε όλους", "black");
+                game.displayOverlay("You find all the neighbors!", "black");
             }
             game.score = game.score + 5;
             game.changeDisplayedStats(game.round, game.score, progressBarStep)
@@ -183,7 +183,7 @@ class Game{
             globalWrongCountries = globalWrongCountries + 1;
             if (globalWrongCountries === globalNeighbors.length){
                 document.getElementById("btn-next-round").disabled = false; // if max number of wrong countries selected, lose round and enable the button for next round
-                game.displayOverlay("Κρίμα, χάσατε!", "red");
+                game.displayOverlay("Oh no, you lost!", "red");
             }
             game.changeDisplayedStats(game.round, game.score, progressBarStep)
         }
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("Χώρα: ", country.name)
     game.nextRound(country);
     document.querySelector("#btn-new-game").addEventListener("click", () => {
-        var response = confirm("Σίγουρα; Θα χάσετε όλο σας το σκόρ!");
+        var response = confirm("Are you sure? Your score will be reset!");
         if (response == true) {   
             game = new Game();
             let country = game.chooseRandomCountry();
