@@ -198,24 +198,31 @@ document.addEventListener("DOMContentLoaded", () => {
     let country = game.chooseRandomCountry();
     console.log("Χώρα: ", country.name)
     game.nextRound(country);
+    alert("Καλωσήρθατε στο παιχνίδι γεωγραφίας 'Βρές τους γείτονες'\n\nΤο παιχνίδι επιλέγει αρχικά μια τυχαία χώρα που εμφανίζεται στην οθόνη σας, μαζί με μια λίστα από τις πιθανές της γειτονικές χώρες (πραγματικές και μη).\nΓια τη χώρα αυτή, πρέπει να επιλέξετε τις χώρες που συνορεύουν πραγματικά, και μόνο αυτές.\nΓια κάθε σωστή επιλογή, κερδίζετε 5 πόντους και για κάθε λάθος επιλογή χάνετε 3 πόντους.\nΤο παιχνίδι τελειώνει όταν ολοκληρώσετε στο σύνολο 10 γύρους παιχνιδιού!");
+
     document.querySelector("#btn-new-game").addEventListener("click", () => {
-        var response = confirm("Are you sure? Your score will be reset!");
+        var response = confirm("Σίγουρα; Θα χάσετε όλο σας το σκορ!");
         if (response == true) {   
             game = new Game();
             let country = game.chooseRandomCountry();
             console.log("Χώρα: ", country)
             game.nextRound(country);
             game.changeDisplayedStats(1,0,0) // reset round, score, progressbar
-            game.resetOverlay();         // remove the overlay message
+            game.resetOverlay();             // remove the overlay message
         }
     });
 
     document.querySelector("#btn-next-round").addEventListener("click", () => {
-        let country = game.chooseRandomCountry();
-        console.log("Χώρα: ", country)
-        game.nextRound(country);
-        game.changeDisplayedStats(game.round, game.score, 0) // reset the progressbar
-        game.resetOverlay();             // remove the overlay message
+        if (game.round == 10){
+            alert("Το παιχνίδι μόλις τελείωσε. Το τελικό σας σκόρ είναι: " + game.score + " .\nΣας ευχαριστούμε που παίξατε!")
+            document.getElementById("btn-next-round").disabled = true; // disable the button for next round, since game ended!
+        } else {
+            let country = game.chooseRandomCountry();
+            console.log("Χώρα: ", country)
+            game.nextRound(country);
+            game.changeDisplayedStats(game.round, game.score, 0) // reset the progressbar
+            game.resetOverlay();                                 // remove the overlay message
+        }
     })
 
     $(window).resize(function () {
