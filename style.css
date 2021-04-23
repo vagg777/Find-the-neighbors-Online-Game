@@ -47,11 +47,14 @@ body {
   float: right;
 }
 
+.playerStats {
+  overflow: hidden;
+}
+
 #btn-next-round {
   text-align:center;
   border:1px solid transparent;
   padding:.375rem .75rem;
-  border-radius:.25rem;
   position: absolute;
   bottom: 70px;
   left: 10px;
@@ -62,7 +65,6 @@ body {
   text-align:center;
   border:1px solid transparent;
   padding:.375rem .75rem;
-  border-radius:.25rem;
   margin-top: 20px;
   position: absolute;
   bottom: 20px;
