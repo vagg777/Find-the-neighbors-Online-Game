@@ -47,7 +47,11 @@ body {
   float: right;
 }
 
-#btn-next-round { 
+#btn-next-round {
+  text-align:center;
+  border:1px solid transparent;
+  padding:.375rem .75rem;
+  border-radius:.25rem;
   position: absolute;
   bottom: 70px;
   left: 10px;
@@ -55,6 +59,10 @@ body {
 }
 
 #btn-new-game {
+  text-align:center;
+  border:1px solid transparent;
+  padding:.375rem .75rem;
+  border-radius:.25rem;
   margin-top: 20px;
   position: absolute;
   bottom: 20px;
