@@ -17,36 +17,34 @@
 
 <body>
     <div class="game-panel">
-        <div class="row-inline">
-            <div id="sidebar">
-                <p><strong>Βρες τους γείτονες</strong></p><br>
-                <div style="overflow: hidden;">
-                    <p id="player-round-text">Γύρος: </p>
-                    <p id="player-round-value"></p>
-                </div>
-                <div style="overflow: hidden;">
-                    <p id="player-score-text">Σκορ: </p>
-                    <p id="player-score-value"></p>
-                </div>
-                <div class="text-center">
-                    <button id="btn-next-round">Επόμενη Χώρα</button>
-                    <button id="btn-new-game">Νέο Παιχνίδι</button>
-                </div>
+        <div id="sidebar">
+            <p><strong>Βρες τους γείτονες</strong></p><br>
+            <div style="overflow: hidden;">
+                <p id="player-round-text">Γύρος: </p>
+                <p id="player-round-value"></p>
             </div>
-            <div class="main">
-                <h2>
-                    <img id="my-country-flag">
-                    <p id="my-country-name"></p>
-                </h2>
-                <div class="progress">
-                    <div id="progress-bar" class="progress-bar" role="progressbar"></div>
-                </div>
-                <div id="overlayBox">
-                    <ul class="flex-container wrap" id="countries_flexbox"></ul>
-                    <strong><div id="overlayText"></div></strong>
-                </div>
+            <div style="overflow: hidden;">
+                <p id="player-score-text">Σκορ: </p>
+                <p id="player-score-value"></p>
             </div>
-        </div> 
+            <div class="text-center">
+                <button id="btn-next-round">Επόμενη Χώρα</button>
+                <button id="btn-new-game">Νέο Παιχνίδι</button>
+            </div>
+        </div>
+        <div class="main">
+            <h2>
+                <img id="my-country-flag">
+                <p id="my-country-name"></p>
+            </h2>
+            <div class="progress">
+                <div id="progress-bar" role="progressbar"></div>
+            </div>
+            <div id="overlayBox">
+                <ul class="flex-container wrap" id="countries_flexbox"></ul>
+                <strong><div id="overlayText"></div></strong>
+            </div>
+        </div>
     </div>
 </body>
 

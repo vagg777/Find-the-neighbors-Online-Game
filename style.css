@@ -112,6 +112,18 @@ body {
   aria-valuenow: 0;
   aria-valuemin: 0;
   aria-valuemax: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  color: #fff;
+  background-color: #007bff;
+  transition: width 0.6s ease;
 }
 
 .flex-container {
